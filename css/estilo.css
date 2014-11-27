@@ -1,0 +1,153 @@
+body{
+	font-size: 16px;
+	background: #B1B1B1;
+}
+header{
+	position: relative;
+}
+#logo, .titulos{
+	float: left;
+}
+#logo img{
+	border-radius: 5px;
+}
+.titulos{
+	width: 85%;
+	padding: 3em;
+	padding-top: 0;
+}
+.login{
+	text-align: center;
+}
+.usuario{
+	position: absolute;
+	right: 0;
+	top: 1.5em;
+	text-align: right;
+}
+.nav-tabs > li > a{
+	background: #E4E4E4;
+}
+#mainWrapper{
+	border-radius: 5px;
+	margin: 0 auto;
+	margin-top: 10px;
+	max-width: 1000px;
+}
+.print{
+	float: right;
+	font-size: 1.5em;
+}
+
+#titleContent{
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	border-top: none;
+	color: #555;
+	padding: 10px;
+}
+.registrar{
+	width: 92%;
+	margin-bottom: .5em;
+	margin-right: .5em;
+}
+.registrar, .borrar{
+	display: inline-block;
+}
+
+#botones{
+	text-align: center;
+}
+#botones button{
+	font-size: 20px;
+}
+#botones button:last-child{
+	margin-left: 2em;
+}
+
+section{
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	border-top: none;
+	box-shadow: 0px -50px 30px black;
+	padding-bottom: 2em;
+}
+section article{
+	padding-top: 15px;
+}
+.alert{
+	position: relative;
+}
+.imguser{
+	border-radius: .5em;
+	box-shadow: 1px 1px 10px rgba(0,0,0,.5);
+	position: absolute;
+	right: 2em;
+	top: 1em;
+
+}
+.barCode{
+	border: 1px solid gray;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	height: 125px;
+	width: 38%;
+}
+.guardar{
+	margin-left: 10.4em;
+}
+.barCode header{
+	border-bottom: 1px solid gray;
+	height: 35px;
+	margin-top: -10px;
+}
+.barCode header h4{
+	background: #f7f7f9;
+	line-height: 34px;
+	text-align: center;
+}
+.alert{
+
+}
+#aRegister{
+
+}
+
+#tSearch_wrapper{
+	margin-bottom: 30px;
+}
+#aSearch{
+	padding: 0 1em;
+}
+#aSearch .container-fluid{
+	border-top: 1px solid gray;
+	display: none;
+	padding-top: 10px;
+}
+#aSearch table tr{
+	cursor: pointer;
+}
+#reloj{
+	text-align: right;
+    position: absolute;
+    right: 0;
+    top: .5em;
+    padding-right: 1em;
+}
+
+footer{
+	background: rgba(0,0,0,0.7);
+	border-radius: 5px;
+	color: white;
+	margin: 1em auto;
+	max-width: 1000px;
+	padding: 12px;
+}
+footer p{
+	text-align: center;
+	vertical-align: middle;
+	margin: 0;
+}
