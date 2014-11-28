@@ -9,51 +9,42 @@ if($_SESSION["autentica"] != "SIP"){
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no"/>
 	<title>MPC registros</title>
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/estilo.css">
 
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
-	<script src="../scripts/prefixfree.min.js"></script>
+	<script src="../scripts/jquery-ui.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
-	<script src="../scripts/reloj.js"></script>
 
 	<script>
-        function entrar(rut)
-        {
-          $.ajax({
+		function realizaProceso(serial){
+		        var parametros = {
+		                "serial" : serial
+		        };
+		        $.ajax({
+		                data:  parametros,
+		                url:   '#',
+		                type:  'post',
+		                beforeSend: function () {
+		                        $("#registerBarcode").html("Procesando, espere por favor...");
+		                },
 
-            url: "procesar_entrada.php",
-            type: "POST",
-            data: "rut="+rut,
-            success: function(resp){
-              $('#resultado').html(resp);
-              return false;
+		                success:  function () {
+		                        $('#registerBarcode').barcode(serial, "codabar", {barWidth:1, barHeight:60, output: "canvas" }
+								);
+		                }
 
-            }
-          });
-        }
-        function salir(rut)
-        {
-          $.ajax({
-            url: "procesar_salida.php",
-            type: "POST",
-            data: "rut="+rut,
-            success: function(resp){
-              $('#resultado').html(resp);
-              return false;
-
-            }
-          });
-        }
+		        });
+		}
 	</script>
 </head>
-<body onload="Comenzar()">
+<body>
 	<div id="mainWrapper">
 		<header>
 			<figure id="logo">
@@ -79,14 +70,14 @@ if($_SESSION["autentica"] != "SIP"){
 			</div>
 
 		</header>
-		<h3>Módulo Guardia</h3>
+		<h3>Módulo Administrador</h3>
 		<nav>
 			<ul class="nav nav-tabs">
-				<li class="active">
-					<a href="#">Acceso Empleado</a>
-				</li>
 				<li>
-					<a href="visita.php">Registrar Visita</a>
+					<a href="index.php">Acceso Empleado</a>
+				</li>
+				<li class="active">
+					<a href="#">Registrar Visita</a>
 				</li>
 				<li>
 					<a href="accesovisita.php">Acceso Visita</a>
@@ -94,22 +85,16 @@ if($_SESSION["autentica"] != "SIP"){
 
 			</ul>
 		</nav>
-		<header id="titleContent">
-			<h4>Acceso de Entrada y Salida</h4>
-			<div id="reloj"></div>
-
-			<hr></header>
+		<header id="titleContent"><h4>Ingresar Nueva Visita</h4><hr></header>
 		<section>
 			<article id="aRegister">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-md-6">
+							<?php include 'formulariovisita.php'; ?>
 						</div>
-						<div class="col-md-8">
-							<h3>Código</h3>
-							<?php include 'form.php'; ?>
-						</div>
-						<div class="col-md-2">
+						<div class="col-md-6">
+
 						</div>
 					</div>
 				</div>

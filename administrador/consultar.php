@@ -31,9 +31,10 @@
 
                while ($rowx = mysqli_fetch_array($result))
                {
-                    $usu= $rowx['rut_persona'];
-                    $usu1= $rowx['nombre'];
-                    $usu2= $rowx['apellido'];
+                    $usu  = $rowx['rut_persona'];
+                    $usu1 = $rowx['nombre'];
+                    $usu2 = $rowx['apellido'];
+                    $usu3 = $rowx['tipo_persona'];
                }
 
                //Si la persona existe se imprimen los datos
@@ -42,6 +43,8 @@
                     echo '<label>Nombre: </label> '.$usu1.' '.$usu2.'.';
                     echo '<br/>';
                     echo '<label>Rut: </label> '.$usu.'.';
+                    echo '<br/>';
+                    echo '<label>'.$usu3.'</label>.';
                     echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'" target="_blank" aria-label="Left Align">
                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                          </a>';
@@ -68,7 +71,7 @@
 
                     FROM registro_persona
                     Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
-                    WHERE persona.rut_persona = '$persona'";
+                    WHERE persona.rut_persona = '$persona' ORDER by cod_registro DESC";
 
                     $historial = mysql_query($strConsulta);
                     $numfilas = mysql_num_rows($historial);
@@ -174,7 +177,7 @@
 
                          FROM registro_persona
                          Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
-                         WHERE persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$fechadesde' AND registro_persona.fecha_salida <= '$fechahasta'";
+                         WHERE persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$fechadesde' AND registro_persona.fecha_salida <= '$fechahasta' ORDER by cod_registro DESC";
 
                     $historial = mysql_query($strConsulta);
                     $numfilas = mysql_num_rows($historial);

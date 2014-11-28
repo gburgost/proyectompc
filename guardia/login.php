@@ -18,8 +18,6 @@ else
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/estilo.css">
   <script src="../scripts/jquery.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
   <script src="../scripts/functions.js"></script>
   <script src="../scripts/prefixfree.min.js"></script>
   <script src="../scripts/jquery.dataTables.js"></script>

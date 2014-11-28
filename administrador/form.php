@@ -44,11 +44,11 @@
 	<p>
 		<label for="foto">Foto de Empleado</label>
 		<input name="foto" type="file" class="" id="foto" />
-
 	</p>
+	<hr>
 	<p>
 		<input type="reset" class="btn btn-danger" value="Limpiar" />
-		<input id="doRegister" class="btn btn-success" type="submit" value="registrar">
+		<input id="doRegister" class="btn btn-success" type="submit" value="Registrar">
 	</p>
 </form>
 

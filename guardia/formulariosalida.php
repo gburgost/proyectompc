@@ -8,6 +8,7 @@
 	<p>
 		<!--<input id="generar" class="btn btn-info" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar"/>-->
 	</p>
+	<hr>
 	<p>
 		<input type="reset" class="btn btn-danger" value="Limpiar"/>
 		<button id="doRegister" type="submit" class="btn btn-success" onclick = "this.form.action = 'procesar_salida.php'" value="accion 1">Salida</button>

@@ -7,16 +7,16 @@
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/estilo.css">
-	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
 	<script src="../scripts/prefixfree.min.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
 
 	<script>
-		function realizaProceso(serial){
+		function realizaProceso(rut){
 		        var parametros = {
-		                "serial" : serial
+		                "rut" : rut
 		        };
 		        $.ajax({
 		                data:  parametros,
@@ -27,7 +27,7 @@
 		                },
 
 		                success:  function () {
-		                        $('#registerBarcode').barcode(serial, "codabar", {barWidth:1, barHeight:60, output: "canvas" }
+		                        $('#registerBarcode').barcode(rut, "codabar", {barWidth:1, barHeight:60, output: "canvas" }
 								);
 		                }
 
@@ -38,8 +38,19 @@
 <body>
 	<div id="mainWrapper">
 		<header>
-			<h1>Sistema de Registros</h1>
+			<figure id="logo">
+				<img src="../img/logompc.png" alt="mpc" width="100" />
+			</figure>
+			<div class="titulos">
+				<h1>Sistema de Control de <br>Acceso y Asistencia.</h1>
+			</div>
+			<div class="usuario">
+				<strong>Administrador</strong>
+				<p>Cristian Seura</p>
+			</div>
+
 		</header>
+		<h3>Módulo Administrador</h3>
 		<nav>
 			<ul class="nav nav-tabs">
 				<li>
@@ -66,8 +77,8 @@
 									</header>
 									<canvas id="registerBarcode" width="180" height="80"></canvas>
 								</div>
-								<a href="#" class="btn btn-primary">Guardar</a>
-								<div class="alert"></div>
+
+								<input id="generar" class=" guardar btn btn-success" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar Código de Barra"/>
 							</div>
 						</div>
 					</div>

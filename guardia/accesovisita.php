@@ -14,6 +14,7 @@ if($_SESSION["autentica"] != "SIP"){
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/estilo.css">
 
 	<script src="../scripts/jquery.min.js"></script>
@@ -22,15 +23,16 @@ if($_SESSION["autentica"] != "SIP"){
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
 	<script src="../scripts/reloj.js"></script>
+	<script src="../scripts/jquery-ui.js"></script>
 
 	<script>
-        function entrar(rut)
+        function entrar(rut, visitado, empresa)
         {
           $.ajax({
 
-            url: "procesar_entrada.php",
+            url: "procesarvisita_entrada.php",
             type: "POST",
-            data: "rut="+rut,
+            data: "rut="+rut+"&visitado="+visitado+"&empresa="+empresa,
             success: function(resp){
               $('#resultado').html(resp);
               return false;
@@ -41,7 +43,7 @@ if($_SESSION["autentica"] != "SIP"){
         function salir(rut)
         {
           $.ajax({
-            url: "procesar_salida.php",
+            url: "procesarvisita_salida.php",
             type: "POST",
             data: "rut="+rut,
             success: function(resp){
@@ -51,6 +53,14 @@ if($_SESSION["autentica"] != "SIP"){
             }
           });
         }
+		$(function() {
+			//autocomplete
+			$(".auto").autocomplete({
+				source: "search.php",
+				minLength: 1
+			});
+
+		});
 	</script>
 </head>
 <body onload="Comenzar()">
@@ -82,20 +92,20 @@ if($_SESSION["autentica"] != "SIP"){
 		<h3>Módulo Guardia</h3>
 		<nav>
 			<ul class="nav nav-tabs">
-				<li class="active">
-					<a href="#">Acceso Empleado</a>
+				<li>
+					<a href="index.php">Acceso Empleado</a>
 				</li>
 				<li>
 					<a href="visita.php">Registrar Visita</a>
 				</li>
-				<li>
-					<a href="accesovisita.php">Acceso Visita</a>
+				<li class="active">
+					<a href="#">Acceso Visita</a>
 				</li>
 
 			</ul>
 		</nav>
 		<header id="titleContent">
-			<h4>Acceso de Entrada y Salida</h4>
+			<h4>Acceso de Entrada y Salida Visita</h4>
 			<div id="reloj"></div>
 
 			<hr></header>
@@ -107,7 +117,8 @@ if($_SESSION["autentica"] != "SIP"){
 						</div>
 						<div class="col-md-8">
 							<h3>Código</h3>
-							<?php include 'form.php'; ?>
+							<?php include 'formvisita.php'; ?>
+
 						</div>
 						<div class="col-md-2">
 						</div>

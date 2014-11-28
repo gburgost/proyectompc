@@ -14,24 +14,26 @@
      if($nmyusuario != 0){
           $myclave = mysqli_query($conexion, "SELECT * FROM registro_persona WHERE rut_persona = '".htmlentities($_POST["rut"])."'
                and estado = 'abierto'");
+          $persona = mysqli_query($conexion, "SELECT * FROM persona WHERE rut_persona = '".htmlentities($_POST["rut"])."'");
           $nmyclave = mysqli_num_rows($myclave);
-          $fila = mysqli_fetch_array($myclave);
+          $fila = mysqli_fetch_array($persona);
 
 
           if ($nmyclave != 0){
           	$estado = "abierto";
           	mysqli_query($conexion, "UPDATE registro_persona SET fecha_salida = '$fecha', hora_salida = '$hora', estado = 'cerrado' WHERE rut_persona = '$rut_persona' and estado ='$estado' ");
 
-          	echo '<div class="alert alert-success" role="alert">Registro de <strong>salida</strong> exitoso.</div>';
-            echo "<script>setTimeout('document.location.reload()',4000);</script>";
+          	echo '<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Registro de <strong>salida</strong> exitoso.<br/><br/>Nombre: '.$fila['nombre'].' '.$fila['apellido'].' <br/> Hora salida: '.$hora.'</br>Fecha salida: '.$fecha.'<br/>
+            	<div class="imguser"><img src="../administrador/'.$fila['foto'].'" widht="100" height = "100"/><p>'.$fila['tipo_persona'].'</p></div></div>';
+            echo "<script>setTimeout('document.location.reload()',5000);</script>";
 
           }
           else{
-          	echo '<div class="alert alert-danger" role="alert">No se ha realizado una <strong>entrada</strong>.</div>';
+          	echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> No se ha realizado una <strong>entrada</strong>.</div>';
           }
 
      }else{
-         echo '<div class="alert alert-danger" role="alert">El rut ingresado no esta registrado en la empresa.</div>';
+         echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> El rut ingresado no esta registrado en la empresa.</div>';
      }
 
 ?>

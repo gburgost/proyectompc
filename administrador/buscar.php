@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/estilo.css">
-	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-ui.js"></script>
@@ -48,7 +48,7 @@
 				<li>
 					<a href="index.php">Registrar</a>
 				</li>
-				<li><a href="#">Registrar Contratista</a></li>
+				<li><a href="contratista.php">Registrar Contratista</a></li>
 				<li class="active"><a href="#">Buscar</a></li>
 
 			</ul>
