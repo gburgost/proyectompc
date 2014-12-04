@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Buscar</title>
+	<title>H.H</title>
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -49,38 +49,34 @@
 					<a href="index.php">Registrar</a>
 				</li>
 				<li><a href="contratista.php">Registrar Contratista</a></li>
-				<li class="active"><a href="#">Buscar</a></li>
-				<li><a href="hh.php">H.H</a></li>
+				<li><a href="buscar.php">Buscar</a></li>
+				<li class="active"><a href="hh.php">H.H</a></li>
 
 			</ul>
 		</nav>
-		<header id="titleContent"><h4>Buscar Persona</h4></header>
+		<header id="titleContent"><h4>Cálculo Horas Trabajadas</h4></header>
 		<section>
 			<article id="aSearch">
 			<form method="POST" action="return false" onsubmit="return false">
 				<div class="row">
 					<div class="col-md-6">
-						<label>Nombre: </label>
-						<input id="persona" class="auto form-control" type="text" required/>
+						<label for="desde">Mes: </label>
+						<input type="month" id="desde" name="desde" class="form-control"/><br/>
 					</div>
 					<div class="col-md-6">
-						<label for="desde">Desde: </label>
-						<input type="date" id="desde" name="desde" class="form-control"/><br/>
-						<label for="hasta">Hasta: </label>
-						<input type="date" id="hasta" name="hasta" class="form-control"/><br/>
-						<button class="btn btn-success"  onclick="consultar(document.getElementById('persona').value,document.getElementById('desde').value, document.getElementById('hasta').value);">Consultar</button>
-						<button class="btn btn-danger" type="reset">Limpiar</button>
+						<button class="btn center btn-success"  onclick="consultar(document.getElementById('desde').value);">Consultar</button>
+						<button class="btn center btn-danger" type="reset">Limpiar</button>
 					</div>
 				</div>
 				<hr>
 			</form>
 			<script>
-                function consultar(persona, desde, hasta)
+                function consultar(desde)
                 {
                   $.ajax({
-                    url: "consultar.php",
+                    url: "consultarhh.php",
                     type: "POST",
-                    data: "persona="+persona+"&desde="+desde+"&hasta="+hasta,
+                    data: "desde="+desde,
                     success: function(resp){
                       $('#resultados').html(resp);
                     }

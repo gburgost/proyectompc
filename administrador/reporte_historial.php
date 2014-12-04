@@ -25,7 +25,7 @@ function Row($data)
 	$nb=0;
 	for($i=0;$i<count($data);$i++)
 		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-	$h=5*$nb;
+	$h=8*$nb;
 	//Issue a page break first if needed
 	$this->CheckPageBreak($h);
 	//Draw the cells of the row
@@ -38,9 +38,8 @@ function Row($data)
 		$y=$this->GetY();
 		//Draw the border
 
-		$this->Rect($x,$y,$w,$h);
 
-		$this->MultiCell($w,5,$data[$i],0,$a,'true');
+		$this->MultiCell($w,8,$data[$i],0,$a,'true');
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
@@ -109,9 +108,10 @@ function NbLines($w,$txt)
 function Header()
 {
 
-	$this->SetFont('Arial','',10);
-	$this->Text(20,14,'Historial Empleado',0,'C', 0);
-	$this->Ln(30);
+	$this->SetFont('Arial','',25);
+	$this->Text(100,30,'Historial Empleado',0,'C', 0);
+	$this->Image('archivos/logompc.jpg' , 21 ,10, 35 , 38,'JPG');
+	$this->Ln(50);
 }
 
 function Footer()
@@ -119,6 +119,7 @@ function Footer()
 	$this->SetY(-15);
 	$this->SetFont('Arial','B',8);
 	$this->Cell(100,10,'Historial Empleado',0,0,'L');
+
 
 }
 
@@ -139,24 +140,25 @@ function Footer()
 	$pdf->Open();
 	$pdf->AddPage();
 	$pdf->SetMargins(20,20,20);
-	$pdf->Ln(10);
+	$pdf->Ln(5);
 
     $pdf->SetFont('Arial','',12);
     $pdf->Cell(0,6,'Nombre: '.$fila['nombre'].' '.$fila['apellido'],0,1);
     $pdf->Cell(0,6,'Rut: '.$fila['rut_persona'],0,1);
+    $pdf->Cell(0,6,$fila['tipo_persona'],0,1);
 
 
 
 	$pdf->Ln(10);
 
-	$pdf->SetWidths(array(65, 60, 55, 50, 20));
-	$pdf->SetFont('Arial','B',10);
+	$pdf->SetWidths(array(40, 35, 45, 40, 40, 40));
+	$pdf->SetFont('Arial','B',12);
 	$pdf->SetFillColor(85,107,47);
     $pdf->SetTextColor(255);
 
 		for($i=0;$i<1;$i++)
 			{
-				$pdf->Row(array('Fecha Entrada', 'Hora Entrada', 'Fecha Salida', 'Hora Salida'));
+				$pdf->Row(array('Fecha Entrada', 'Hora Entrada', 'Guardia Entrada', 'Fecha Salida', 'Hora Salida', 'Guardia Salida'));
 			}
 
 	$historial = $con->conectar();
@@ -168,12 +170,14 @@ function Footer()
 				 registro_persona.hora_entrada,
 			 	 registro_persona.fecha_salida,
 				 registro_persona.hora_salida,
-				 persona.nombre,
-				 persona.rut_persona
+				 registro_persona.rut_guardia1,
+	             guardia.nombre_guardia,
+	             guardia.apellido_guardia,
+	             guardia.rut_guardia
 
 	FROM registro_persona
-	Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
-	WHERE persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$desde' AND registro_persona.fecha_salida <= '$hasta'";
+	Inner Join guardia ON registro_persona.rut_guardia = guardia.rut_guardia
+	WHERE registro_persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$desde' AND registro_persona.fecha_salida <= '$hasta' ORDER BY cod_registro DESC";
 
 	$historial = mysql_query($strConsulta);
 	$numfilas = mysql_num_rows($historial);
@@ -181,19 +185,32 @@ function Footer()
 	for ($i=0; $i<$numfilas; $i++)
 		{
 			$fila = mysql_fetch_array($historial);
-			$pdf->SetFont('Arial','',10);
+			$pdf->SetFont('Arial','',12);
 
 			if($i%2 == 1)
 			{
-				$pdf->SetFillColor(153,255,153);
+				$ArrayFecha =explode('-', $fecha_entrada = $fila['fecha_entrada']);
+     			$fecha_entrada = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+     			$ArrayFecha =explode('-', $fecha_salida = $fila['fecha_salida']);
+     			$fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+				$pdf->SetFillColor(255,255,255);
     			$pdf->SetTextColor(0);
-				$pdf->Row(array($fila['fecha_entrada'], $fila['hora_entrada'], $fila['fecha_salida'], $fila['hora_salida']));
+				$pdf->Row(array($fila['fecha_entrada'], $fila['hora_entrada'], $fila['nombre_guardia'].' '.$fila['apellido_guardia'], $fila['fecha_salida'], $fila['hora_salida'], $fila['rut_guardia1']));
 			}
 			else
 			{
-				$pdf->SetFillColor(102,204,51);
+				$ArrayFecha =explode('-', $fecha_entrada = $fila['fecha_entrada']);
+     			$fecha_entrada = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+     			$ArrayFecha =explode('-', $fecha_salida = $fila['fecha_salida']);
+     			$fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+
+				$pdf->SetFillColor(255,255,255);
     			$pdf->SetTextColor(0);
-				$pdf->Row(array($fila['fecha_entrada'], $fila['hora_entrada'], $fila['fecha_salida'], $fila['hora_salida']));
+				$pdf->Row(array($fila['fecha_entrada'], $fila['hora_entrada'], $fila['nombre_guardia'].' '.$fila['apellido_guardia'], $fila['fecha_salida'], $fila['hora_salida'], $fila['rut_guardia1']));
 			}
 		}
 

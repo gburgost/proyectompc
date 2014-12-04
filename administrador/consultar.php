@@ -53,9 +53,11 @@
                     echo '<thead>
                                    <tr>
                                         <th>Fecha Entrada</th>
-                                        <th>Fecha Salida</th>
                                         <th>Hora Entrada</th>
+                                        <th>Guardia Entrada</th>
+                                        <th>Fecha Salida</th>
                                         <th>Hora Salida</th>
+                                        <th>Guardia Salida</th>
                                    </tr>
                               </thead>';
                     $con = new DB;
@@ -66,12 +68,15 @@
                                registro_persona.hora_entrada,
                                registro_persona.fecha_salida,
                                registro_persona.hora_salida,
-                               persona.nombre,
-                               persona.rut_persona
+                               registro_persona.rut_guardia1,
+                               guardia.nombre_guardia,
+                               guardia.apellido_guardia,
+                               guardia.rut_guardia
+
 
                     FROM registro_persona
-                    Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
-                    WHERE persona.rut_persona = '$persona' ORDER by cod_registro DESC";
+                    Inner Join guardia ON registro_persona.rut_guardia = guardia.rut_guardia
+                    WHERE registro_persona.rut_persona = '$persona' ORDER by cod_registro DESC";
 
                     $historial = mysql_query($strConsulta);
                     $numfilas = mysql_num_rows($historial);
@@ -82,22 +87,36 @@
 
                          if($i%2 == 1)
                          {
+    $ArrayFecha =explode('-', $fecha_entrada = $fila['fecha_entrada']);
+     $fecha_entrada = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+     $ArrayFecha =explode('-', $fecha_salida = $fila['fecha_salida']);
+     $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fila['fecha_entrada']."</td>";
-                              echo "<td>".$fila['fecha_salida']."</td>";
+                              echo "<td>".$fecha_entrada."</td>";
                               echo "<td>".$fila['hora_entrada']."</td>";
+                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td>".$fecha_salida."</td>";
                               echo "<td>".$fila['hora_salida']."</td>";
+                              echo "<td>".$fila['rut_guardia1']."</td>";
                               echo "</tr>";
                          }
                          else
                          {
+    $ArrayFecha =explode('-', $fecha_entrada = $fila['fecha_entrada']);
+     $fecha_entrada = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+     $ArrayFecha =explode('-', $fecha_salida = $fila['fecha_salida']);
+     $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fila['fecha_entrada']."</td>";
-                              echo "<td>".$fila['fecha_salida']."</td>";
+                              echo "<td>".$fecha_entrada."</td>";
                               echo "<td>".$fila['hora_entrada']."</td>";
+                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td>".$fecha_salida."</td>";
                               echo "<td>".$fila['hora_salida']."</td>";
+                              echo "<td>".$fila['rut_guardia1']."</td>";
                               echo "</tr>";
                          }
                     }
@@ -117,12 +136,6 @@
      else{
 
           list($nombre,$apellido) = explode(" ",$persona);
-
-          $ArrayFecha =explode('-', $fechadesde = $_POST['desde']);
-          $fechadesde = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
-
-          $ArrayFecha =explode('-', $fechahasta = $_POST['hasta']);
-          $fechahasta = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
 
           /*El query valida si el usuario ingresado existe en la base de datos. Se utiliza la función
           htmlentities para evitar inyecciones SQL.*/
@@ -151,7 +164,7 @@
                     echo '<label>Nombre: </label> '.$usu1.' '.$usu2.'.';
                     echo '<br/>';
                     echo '<label>Rut: </label> '.$usu.'.';
-                    echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'&desde='.$fechadesde.'&hasta='.$fechahasta.'" target="_blank" aria-label="Left Align">
+                    echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'&desde='.$desde.'&hasta='.$hasta.'" target="_blank" aria-label="Left Align">
                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                          </a>';
                     echo '<table id="tSearch" class="table table-hover" cellspacing="1"> ';
@@ -159,25 +172,29 @@
                     echo '<thead>
                                    <tr>
                                         <th>Fecha Entrada</th>
-                                        <th>Fecha Salida</th>
                                         <th>Hora Entrada</th>
+                                        <th>Guardia Entrada</th>
+                                        <th>Fecha Salida</th>
                                         <th>Hora Salida</th>
+                                        <th>Guardia Salida</th>
                                    </tr>
                               </thead>';
                     $con = new DB;
                     $historial = $con->conectar();
                     $persona= $usu;
                     $strConsulta =
-                         "SELECT   registro_persona.fecha_entrada,
-                                   registro_persona.hora_entrada,
-                                   registro_persona.fecha_salida,
-                                   registro_persona.hora_salida,
-                                   persona.nombre,
-                                   persona.rut_persona
+                         "SELECT  registro_persona.fecha_entrada,
+                               registro_persona.hora_entrada,
+                               registro_persona.fecha_salida,
+                               registro_persona.hora_salida,
+                               registro_persona.rut_guardia1,
+                               guardia.nombre_guardia,
+                               guardia.apellido_guardia,
+                               guardia.rut_guardia
 
                          FROM registro_persona
-                         Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
-                         WHERE persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$fechadesde' AND registro_persona.fecha_salida <= '$fechahasta' ORDER by cod_registro DESC";
+                         Inner Join guardia ON registro_persona.rut_guardia = guardia.rut_guardia
+                         WHERE registro_persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$desde' AND registro_persona.fecha_salida <= '$hasta' ORDER by cod_registro DESC";
 
                     $historial = mysql_query($strConsulta);
                     $numfilas = mysql_num_rows($historial);
@@ -188,22 +205,37 @@
 
                          if($i%2 == 1)
                          {
+                              $ArrayFecha =explode('-', $fecha_entrada = $fila['fecha_entrada']);
+                              $fecha_entrada = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+                              $ArrayFecha =explode('-', $fecha_salida = $fila['fecha_salida']);
+                              $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fila['fecha_entrada']."</td>";
-                              echo "<td>".$fila['fecha_salida']."</td>";
+                              echo "<td>".$fecha_entrada."</td>";
                               echo "<td>".$fila['hora_entrada']."</td>";
+                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td>".$fecha_salida."</td>";
                               echo "<td>".$fila['hora_salida']."</td>";
+                              echo "<td>".$fila['rut_guardia1']."</td>";
+
                               echo "</tr>";
                          }
                          else
                          {
+                              $ArrayFecha =explode('-', $fecha_entrada = $fila['fecha_entrada']);
+                              $fecha_entrada = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+                              $ArrayFecha =explode('-', $fecha_salida = $fila['fecha_salida']);
+                              $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fila['fecha_entrada']."</td>";
-                              echo "<td>".$fila['fecha_salida']."</td>";
+                              echo "<td>".$fecha_entrada."</td>";
                               echo "<td>".$fila['hora_entrada']."</td>";
+                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td>".$fecha_salida."</td>";
                               echo "<td>".$fila['hora_salida']."</td>";
+                              echo "<td>".$fila['rut_guardia1']."</td>";
                               echo "</tr>";
                          }
                     }

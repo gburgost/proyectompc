@@ -8,7 +8,7 @@
 	include("conexion.php");
 	$rut_persona = $_POST['rut'];
 	 date_default_timezone_set("Chile/Continental");
-	$fecha=date("d-m-Y");
+	$fecha=date("Y-m-d");
 	$hora=date("H:i:s");
 	$guardia = $_SESSION["usuarioactual"];
 	$encontrar = mysqli_query($conexion, "SELECT nombre_guardia, apellido_guardia FROM guardia WHERE rut_guardia = '$guardia'");

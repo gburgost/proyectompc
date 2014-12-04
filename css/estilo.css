@@ -19,6 +19,10 @@ header{
 .login{
 	text-align: center;
 }
+button.center{
+	margin-top: 1.8em;
+
+}
 .usuario{
 	position: absolute;
 	right: 0;
