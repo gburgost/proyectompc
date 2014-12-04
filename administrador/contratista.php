@@ -54,10 +54,11 @@
 		<nav>
 			<ul class="nav nav-tabs">
 				<li>
-					<a href="index.php">Registrar Empleado</a>
+					<a href="index.php">Registrar Empleado al Sistema</a>
 				</li>
 				<li class="active"><a href="#">Registrar Contratista</a></li>
 				<li><a href="buscar.php">Buscar</a></li>
+				<li><a href="hh.php">H.H</a></li>
 
 			</ul>
 		</nav>
@@ -84,64 +85,6 @@
 					</div>
 				</div>
 			</article>
-			<!--<article id="aSearch">
-				<table id="tSearch" class="table table-hover" cellspacing="1">
-					<caption>Listado de Personas</caption>
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Area</th>
-							<th>Encargado</th>
-							<th>Nombre</th>
-							<th># Serie</th>
-							<th>Cantidad</th>
-							<th>Descripcion</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>4</td>
-							<td>Area 1</td>
-							<td>Hector</td>
-							<td>Hector</td>
-							<td>1234</td>
-							<td>10</td>
-							<td>probando todo esto</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Area 1</td>
-							<td>Jano</td>
-							<td>Alvaro</td>
-							<td>1234</td>
-							<td>10</td>
-							<td>probando todo esto</td>
-						</tr>
-
-					</tbody>
-				</table>
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-6">
-							<h3>Editar personas <span></span></h3>
-							Ultima actualizacion: <i></i>
-							<?php // include 'form.php'; ?>
-						</div>
-						<div class="col-md-6">
-							<div class="contentBardcode">
-								<div class="barCode">
-									<header>
-										<h4>Código</h4>
-									</header>
-									<canvas id="searchBarcode" width="120" height="70"></canvas>
-								</div>
-								<a href="#" class="btn btn-primary">Guardar</a>
-								<div class="alert"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</artivle>-->
 		</section>
 	</div>
 	<footer>

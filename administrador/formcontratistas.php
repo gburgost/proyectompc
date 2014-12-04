@@ -36,7 +36,7 @@
 		<input id="datefin" class="form-control" name="datefin" type="date" />
 	</p>
 	<p>
-		<label for="descobra">Descripcion Obra</label>
+		<label for="descobra">Descripción Obra</label>
 		<textarea id="descobra" class="form-control" name="descobra" type="text"></textarea>
 	</p>
 	<p>

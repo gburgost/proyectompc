@@ -31,6 +31,8 @@
                          persona.rut_persona,
                          persona.nombre,
                          persona.apellido,
+                         registro_persona.fecha_entrada,
+                         registro_persona.fecha_salida,
                          SUM(hora_salida-hora_entrada)
           FROM registro_persona
           Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
@@ -38,17 +40,28 @@
           GROUP BY rut_persona");
 
 
+
           while($row=mysqli_fetch_array($result))
           {
-          $hora = $row['SUM(hora_salida-hora_entrada)'];
-          $horaex = $hora - 1800000;
-          echo "<tbody>";
-          echo "<tr>";
-          echo "<td>" . $row['nombre'].' '.$row['apellido']. "</td>";
-          echo "<td>" .$hora. "</td>";
-          echo "<td>" .$horaex."</td>";
-          echo "<td> total</td>";
-          echo "</tr>";
+                    $hora = $row['SUM(hora_salida-hora_entrada)'];
+                    echo "<tbody>";
+                    echo "<tr>";
+                    echo "<td>" . $row['nombre'].' '.$row['apellido']. "</td>";
+                    echo "<td>";
+                    $horaex = (($hora) / 10000)-180;
+                    $horat = ($hora) / 10000;
+                    echo  $horat;
+                    echo "</td>";
+                    echo "<td>";
+                    if ($horaex < 0) {
+                         echo "0";
+                    }else{
+                         echo $horaex;
+                    }
+                    echo "</td>";
+                    echo "<td> total</td>";
+                    echo "</tr>";
+
           }
           echo "<tbody>";
           echo "</table>";

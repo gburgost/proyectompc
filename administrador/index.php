@@ -33,6 +33,7 @@
 				</li>
 				<li><a href="contratista.php">Registrar Contratista</a></li>
 				<li><a href="buscar.php">Buscar</a></li>
+				<li><a href="hh.php">H.H</a></li>
 
 			</ul>
 		</nav>
