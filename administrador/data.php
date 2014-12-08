@@ -22,7 +22,7 @@ $query = "SELECT
           FROM registro_persona
           Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
           WHERE tipo_persona = 'Empleado'
-          GROUP BY rut_persona";
+          GROUP BY fecha_entrada";
 $result = mysql_query( $query );
 
 // All good?
@@ -32,15 +32,17 @@ if ( !$result ) {
   $message .= 'Whole query: ' . $query;
   die( $message );
 }
-
 // Print out rows
 $prefix = '';
 echo "[\n";
+
 while ( $row = mysql_fetch_assoc( $result ) ) {
+
   echo $prefix . " {\n";
-  echo '  "category": "' . $row['fecha_entrada'] . '",' . "\n";
-  echo '  "value1": ' . $row['SUM(hora_salida-hora_entrada)']/10000 . ',' . "\n";
-  echo '  "value2": ' . $row['SUM(hora_salida-hora_entrada)'] /10000 . '' . "\n";
+  echo '  "fecha": "' . $row['fecha_entrada'] . '",' . "\n";
+  echo '  "value1": ';
+  echo $row['SUM(hora_salida-hora_entrada)']/10000;
+  echo '' . "\n";
   echo " }";
   $prefix = ",\n";
 }

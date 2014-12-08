@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-12-2014 a las 06:17:41
+-- Tiempo de generación: 08-12-2014 a las 18:08:29
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `registro_persona` (
   `fecha_salida` date DEFAULT NULL,
   `hora_salida` time DEFAULT NULL,
   `estado` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `registro_persona`
@@ -245,16 +245,18 @@ INSERT INTO `registro_persona` (`cod_registro`, `nro_garita`, `rut_persona`, `ru
 (256, 'Uno', '18393479-1', '18403314-3', 'Gonzalo Burgos', '2014-12-02', '14:00:00', '2014-12-02', '18:00:00', 'cerrado'),
 (257, 'Uno', '7165887-2', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '08:00:00', '2014-12-01', '13:00:00', 'cerrado'),
 (258, 'Uno', '7165887-2', '18393479-1', 'Hector Prieto', '2014-12-01', '14:00:00', '2014-12-01', '18:00:00', 'cerrado'),
-(259, 'Uno', '11469991-8', '18403314-3', 'Gonzalo Burgos', '2014-12-01', '08:00:00', '2014-12-01', '13:00:00', 'cerrado'),
-(260, 'Uno', '11469991-8', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '14:00:00', '2014-12-01', '18:00:00', 'cerrado'),
+(259, 'Uno', '11469991-8', '18403314-3', 'Gonzalo Burgos', '2014-12-03', '08:00:00', '2014-12-03', '13:00:00', 'cerrado'),
+(260, 'Uno', '11469991-8', '18393479-1', 'Gonzalo Burgos', '2014-12-03', '14:00:00', '2014-12-03', '18:00:00', 'cerrado'),
 (261, 'Uno', '12402211-8', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '08:00:00', '2014-12-01', '13:00:00', 'cerrado'),
 (262, 'Uno', '12402211-8', '18403314-3', 'Hector Prieto', '2014-12-01', '14:00:00', '2014-12-01', '18:00:00', 'cerrado'),
 (263, 'Uno', '15611042-6', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '08:00:00', '2014-12-01', '13:00:00', 'cerrado'),
 (264, 'Uno', '15611042-6', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '14:00:00', '2014-12-01', '18:00:00', 'cerrado'),
-(265, 'Uno', '9897840-2', '18393479-1', 'Hector Prieto', '2014-12-01', '08:00:00', '2014-12-01', '13:00:00', 'cerrado'),
-(266, 'Uno', '9897840-2', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '14:00:00', '2014-12-01', '18:00:00', 'cerrado'),
-(269, 'Uno', '13015775-0', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '08:00:00', '2014-12-01', '13:00:00', 'cerrado'),
-(270, 'Uno', '13015775-0', '18393479-1', 'Gonzalo Burgos', '2014-12-01', '14:00:00', '2014-12-01', '18:00:00', 'cerrado');
+(265, 'Uno', '9897840-2', '18393479-1', 'Hector Prieto', '2014-12-24', '08:00:00', '2014-12-24', '13:00:00', 'cerrado'),
+(266, 'Uno', '9897840-2', '18393479-1', 'Gonzalo Burgos', '2014-12-24', '14:00:00', '2014-12-24', '18:00:00', 'cerrado'),
+(276, 'Dos', '18403314-3', '18403314-3', 'Hector Prieto', '2014-11-01', '08:00:00', '2014-11-01', '13:00:00', 'cerrado'),
+(277, 'Dos', '18403314-3', '18403314-3', 'Hector Prieto', '2014-11-01', '14:00:00', '2014-11-01', '18:00:00', 'cerrado'),
+(278, 'Dos', '18393479-1', '18403314-3', 'Hector Prieto', '2014-11-01', '08:00:00', '2014-11-01', '13:00:00', 'cerrado'),
+(279, 'Dos', '18393479-1', '18403314-3', 'Hector Prieto', '2014-11-01', '14:00:00', '2014-11-01', '18:00:00', 'cerrado');
 
 -- --------------------------------------------------------
 
@@ -412,7 +414,7 @@ MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 -- AUTO_INCREMENT de la tabla `registro_persona`
 --
 ALTER TABLE `registro_persona`
-MODIFY `cod_registro` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=271;
+MODIFY `cod_registro` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=280;
 --
 -- AUTO_INCREMENT de la tabla `turno_guardia`
 --

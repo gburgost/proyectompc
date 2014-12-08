@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Buscar</title>
+	<title>Estadísticas</title>
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/estilo.css">
+	<script src="../scripts/amcharts.js"></script>
+	<script src="../scripts/serial.js"></script>
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-ui.js"></script>
-	<script src="../scripts/amcharts.js"></script>
-	<script src="../scripts/serial.js"></script>
+
 </head>
 <body>
 	<div id="mainWrapper">
@@ -86,7 +87,7 @@ AmCharts.ready(function() {
   chart = new AmCharts.AmSerialChart();
   chart.pathToImages = "http://www.amcharts.com/lib/images/";
   chart.dataProvider = chartData;
-  chart.categoryField = "category";
+  chart.categoryField = "fecha";
   chart.dataDateFormat = "YYYY-MM-DD";
 
   // GRAPHS
