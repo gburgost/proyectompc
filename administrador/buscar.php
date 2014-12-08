@@ -46,11 +46,12 @@
 		<nav>
 			<ul class="nav nav-tabs">
 				<li>
-					<a href="index.php">Registrar</a>
+					<a href="index.php">Registrar Empleado al Sistema</a>
 				</li>
 				<li><a href="contratista.php">Registrar Contratista</a></li>
 				<li class="active"><a href="#">Buscar</a></li>
-				<li><a href="hh.php">H.H</a></li>
+				<li><a href="hh.php">Horas Hombre</a></li>
+				<li><a href="grafico.php">Estadísticas</a></li>
 
 			</ul>
 		</nav>

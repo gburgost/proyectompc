@@ -14,7 +14,6 @@
           $ArrayFecha =explode('-', $mes2 = $_POST['desde']);
           $mes2 = $ArrayFecha[0] ."-".$ArrayFecha[1] ."-30" ;
 
-
           echo '<table id="tSearch" class="table table-hover" cellspacing="1"> ';
           echo '<caption>Horas trabajadas del personal</caption>';
           echo "<thead>
@@ -50,7 +49,11 @@
                     echo "<td>";
                     $horaex = (($hora) / 10000)-180;
                     $horat = ($hora) / 10000;
-                    echo  $horat;
+                    if ($horat >= 180) {
+                         echo "180";
+                    }else{
+                         echo  $horat;
+                    }
                     echo "</td>";
                     echo "<td>";
                     if ($horaex < 0) {
@@ -59,7 +62,9 @@
                          echo $horaex;
                     }
                     echo "</td>";
-                    echo "<td> total</td>";
+                    echo "<td>";
+                    echo $horat;
+                    echo "</td>";
                     echo "</tr>";
 
           }

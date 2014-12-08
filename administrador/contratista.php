@@ -58,7 +58,8 @@
 				</li>
 				<li class="active"><a href="#">Registrar Contratista</a></li>
 				<li><a href="buscar.php">Buscar</a></li>
-				<li><a href="hh.php">H.H</a></li>
+				<li><a href="hh.php">Horas Hombre</a></li>
+				<li><a href="grafico.php">Estadísticas</a></li>
 
 			</ul>
 		</nav>

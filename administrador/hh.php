@@ -46,15 +46,16 @@
 		<nav>
 			<ul class="nav nav-tabs">
 				<li>
-					<a href="index.php">Registrar</a>
+					<a href="index.php">Registrar Empleado al Sistema</a>
 				</li>
 				<li><a href="contratista.php">Registrar Contratista</a></li>
 				<li><a href="buscar.php">Buscar</a></li>
-				<li class="active"><a href="hh.php">H.H</a></li>
+				<li class="active"><a href="hh.php">Horas Hombre</a></li>
+				<li><a href="grafico.php">Estadísticas</a></li>
 
 			</ul>
 		</nav>
-		<header id="titleContent"><h4>Cálculo Horas Trabajadas</h4></header>
+		<header id="titleContent"><h4>Cálculo HH de los Empleados</h4></header>
 		<section>
 			<article id="aSearch">
 			<form method="POST" action="return false" onsubmit="return false">
@@ -77,6 +78,9 @@
                     url: "consultarhh.php",
                     type: "POST",
                     data: "desde="+desde,
+                    beforeSend: function () {
+		                        $("#resultados").html("<img src='../img/load.gif' />");
+		                },
                     success: function(resp){
                       $('#resultados').html(resp);
                     }
