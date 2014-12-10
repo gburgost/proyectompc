@@ -47,23 +47,80 @@
 		<section>
 			<article id="aRegister">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-6">
-							<?php include 'form.php'; ?>
-						</div>
-						<div class="col-md-6">
-							<div class="contentBardcode">
-								<div class="barCode">
-									<header>
-										<h4>Código</h4>
-									</header>
-									<div id="registerBarcode" width="280" height="80"></div>
-								</div>
+					<form id="fRegister" class="form" name="form" action="registro_empleado.php" enctype="multipart/form-data"  method="POST">
+						<div class="row">
+							<div class="col-md-6">
 
-								<input id="generar" class=" guardar btn btn-success" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar Código de Barra"/>
+								<p>
+									<label for="name">Nombre</label>
+									<input id="name" class="form-control" name="name" type="text" required tabindex="1"/>
+								</p>
+								<p>
+									<label for="rut">Rut</label>
+									<input id="rut" class="form-control" name="rut" type="text" tabindex="3" />
+								</p>
+								<p>
+									<label for="cargo">Cargo</label>
+									<input id="cargo" class="form-control" name="cargo" type="text" tabindex="5" />
+								</p>
+								<p>
+									<label for="fechavin">Fecha de Vinculación</label>
+									<input id="fechavin" class="form-control" name="fechavin" type="date" tabindex="7" />
+								</p>
+								<p>
+									<label for="departamento">Departamento</label>
+									<?php include 'departamento.php'; ?>
+								</p>
+
 							</div>
+							<div class="col-md-6">
+
+								<p>
+									<label for="lastname">Apellidos</label>
+									<input id="lastname" class="form-control" name="lastname" type="text" required tabindex="2"/>
+								</p>
+								<p>
+									<label for="date">Fecha Nacimiento</label>
+									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
+								</p>
+								<p>
+									<label for="tipo_contrato">Tipo Contrato</label>
+									<select name="tipo_contrato" class="form-control" id="tipo_contrato" tabindex="6">
+										<option>Seleccione Tipo Contrato</option>
+										<option>Plazo fijo</option>
+										<option>Indefinido</option>
+									</select>
+								</p>
+
+								<p>
+									<label for="fechades">Fecha de Desvinculación</label>
+									<input id="fechades" class="form-control" name="fechades" type="date" tabindex="8" />
+								</p>
+								<p>
+									<label for="foto">Foto de Empleado</label>
+									<input name="foto" type="file" class="" id="foto" tabindex="10"/>
+								</p>
+
+							<!--	<div class="contentBardcode">
+
+								<div class="barCode">
+										<header>
+											<h4>Código</h4>
+										</header>
+										<div id="registerBarcode" width="280" height="80"></div>
+									</div>
+									<input id="generar" class=" guardar btn btn-success" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar Código de Barra"/>
+									</div>
+								-->
+							</div>
+
 						</div>
-					</div>
+						<hr>
+						<div id="botones">
+							<button type="reset" class="btn btn-danger" >Limpiar</button>
+							<button id="doRegister" class="btn btn-success" type="submit">Registrar</button>
+						</div>
+					</form>
 				</div>
 			</article>
 		</section>

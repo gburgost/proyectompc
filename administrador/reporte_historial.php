@@ -105,21 +105,14 @@ function NbLines($w,$txt)
 	return $nl;
 }
 
-function Header()
-{
-	 $ArrayFecha =explode('-', $inicio = $_GET['desde']);
-     $inicio = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
-
-     $ArrayFecha =explode('-', $fin = $_GET['hasta']);
-     $fin = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
-
-	$this->SetFont('Arial','',25);
-	$this->Text(100,30,'Historial Empleado',0,'C', 0);
-	$this->SetFont('Arial','',12);
-	$this->Text(195,81.3,'Fechas: '.$inicio.' a '.$fin,0,'C',0);
-	$this->Image('archivos/logompc.jpg' , 21 ,10, 35 , 38,'JPG');
-	$this->Ln(50);
-}
+	function Header()
+	{
+		$this->SetFont('Arial','',25);
+		$this->Text(100,30,'Historial Empleado',0,'C', 0);
+		$this->SetFont('Arial','',12);
+		$this->Image('archivos/logompc.jpg' , 21 ,10, 35 , 38,'JPG');
+		$this->Ln(50);
+	}
 
 function Footer()
 {
@@ -153,9 +146,20 @@ function Footer()
     $pdf->Cell(0,6,'Nombre: '.$fila['nombre'].' '.$fila['apellido'],0,1);
     $pdf->Cell(0,6,'Rut: '.$fila['rut_persona'],0,1);
     $pdf->Cell(0,6,$fila['tipo_persona'],0,1);
+	if(($_GET['desde'] == "")AND($_GET['hasta'] == ""))
+	{
 
-	$pdf->Ln(10);
+	}else
+	{
+		$ArrayFecha =explode('-', $inicio = $_GET['desde']);
+	    $inicio = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
 
+	    $ArrayFecha =explode('-', $fin = $_GET['hasta']);
+	    $fin = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+		$pdf->SetFont('Arial','',12);
+	    $pdf->Cell(415,-6,'Fechas: '.$inicio.' a '.$fin,0,1,'C');
+	}
+	$pdf->Ln(15);
 	$pdf->SetWidths(array(40, 35, 45, 40, 40, 40));
 	$pdf->SetFont('Arial','B',12);
 	$pdf->SetFillColor(0,107,78);

@@ -60,6 +60,7 @@
                                         <th>Fecha Salida</th>
                                         <th>Hora Salida</th>
                                         <th>Guardia Salida</th>
+                                        <th>Horas Extras</th>
                                    </tr>
                               </thead>';
                     $con = new DB;
@@ -96,17 +97,23 @@
      $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fecha_entrada."</td>";
-                              echo "<td>".$fila['hora_entrada']."</td>";
-                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td align='center'>".$fecha_entrada."</td>";
+                              echo "<td align='center'>".$fila['hora_entrada']."</td>";
+                              echo "<td align='center'>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
                               if ($fila['hora_salida'] > '18:00:00') {
-                                   echo "<td BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   $ex = $fila['hora_salida'] - '18:00:00';
+                                   echo "<td align='center' BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>".$ex."</th>";
                               }
                               else{
-                                   echo "<td>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['hora_salida']."</td>";
+                                   echo "<td >".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>--</th>";
                               }
-                              echo "<td>".$fila['rut_guardia1']."</td>";
+
+
                               echo "</tr>";
                          }
                          else
@@ -118,17 +125,23 @@
      $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fecha_entrada."</td>";
-                              echo "<td>".$fila['hora_entrada']."</td>";
-                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td align='center'>".$fecha_entrada."</td>";
+                              echo "<td align='center'>".$fila['hora_entrada']."</td>";
+                              echo "<td align='center'>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
                               if ($fila['hora_salida'] > '18:00:00') {
-                                   echo "<td BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   $ex = $fila['hora_salida'] - '18:00:00';
+                                   echo "<td align='center' BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>".$ex."</th>";
                               }
                               else{
-                                   echo "<td>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['hora_salida']."</td>";
+                                   echo "<td >".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>--</th>";
                               }
-                              echo "<td>".$fila['rut_guardia1']."</td>";
+
+
                               echo "</tr>";
                          }
                     }
@@ -179,6 +192,9 @@
                     echo '<label>Rut: </label> '.$usu.'.';
                     echo '<br/>';
                     echo '<label>'.$usu3.'</label>.';
+                    echo '<br/><a class="" href="tarjetas.php?rut_persona='.$usu.'&nombre='.$usu1.'&apellido='.$usu2.'&tipo_persona='.$usu3.'" target="_blank">
+                           <span class="icon-creditcards" aria-hidden="true"></span>Generar Tarjeta
+                         </a>';
                     echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'&desde='.$desde.'&hasta='.$hasta.'" target="_blank" aria-label="Left Align">
                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                          </a>';
@@ -192,6 +208,7 @@
                                         <th>Fecha Salida</th>
                                         <th>Hora Salida</th>
                                         <th>Guardia Salida</th>
+                                        <th>Horas Extras</th>
                                    </tr>
                               </thead>';
                     $con = new DB;
@@ -227,17 +244,22 @@
                               $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fecha_entrada."</td>";
-                              echo "<td>".$fila['hora_entrada']."</td>";
-                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td align='center'>".$fecha_entrada."</td>";
+                              echo "<td align='center'>".$fila['hora_entrada']."</td>";
+                              echo "<td align='center'>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
                               if ($fila['hora_salida'] > '18:00:00') {
-                                   echo "<td BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   $ex = $fila['hora_salida'] - '18:00:00';
+                                   echo "<td align='center' BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>".$ex."</th>";
                               }
                               else{
-                                   echo "<td>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['hora_salida']."</td>";
+                                   echo "<td >".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>--</th>";
                               }
-                              echo "<td>".$fila['rut_guardia1']."</td>";
+
 
                               echo "</tr>";
                          }
@@ -250,17 +272,23 @@
                               $fecha_salida = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
                               echo "<tbody>";
                               echo "<tr>";
-                              echo "<td>".$fecha_entrada."</td>";
-                              echo "<td>".$fila['hora_entrada']."</td>";
-                              echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
+                              echo "<td align='center'>".$fecha_entrada."</td>";
+                              echo "<td align='center'>".$fila['hora_entrada']."</td>";
+                              echo "<td align='center'>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
                               if ($fila['hora_salida'] > '18:00:00') {
-                                   echo "<td BGCOLOR='#C55E5B' >".$fila['hora_salida']."</td>";
+                                   $ex = $fila['hora_salida'] - '18:00:00';
+                                   echo "<td align='center' BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>".$ex."</th>";
                               }
                               else{
-                                   echo "<td>".$fila['hora_salida']."</td>";
+                                   echo "<td align='center'>".$fila['hora_salida']."</td>";
+                                   echo "<td >".$fila['rut_guardia1']."</td>";
+                                   echo "<td align='center'>--</th>";
                               }
-                              echo "<td>".$fila['rut_guardia1']."</td>";
+
+
                               echo "</tr>";
                          }
                     }
@@ -269,12 +297,12 @@
                }
                else
                {
-                    echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 2.</div>';
+                    echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Completa los campos.</div>';
                }
           }
           else
           {
-               echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 3</div>';
+               echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Datos mal ingresados.</div>';
           }
      }
 

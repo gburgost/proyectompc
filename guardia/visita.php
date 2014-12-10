@@ -70,7 +70,7 @@ if($_SESSION["autentica"] != "SIP"){
 			</div>
 
 		</header>
-		<h3>Módulo Administrador</h3>
+		<h3>Módulo Guardia</h3>
 		<nav>
 			<ul class="nav nav-tabs">
 				<li>

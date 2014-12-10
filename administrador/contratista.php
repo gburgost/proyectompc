@@ -75,23 +75,72 @@
 		<section>
 			<article id="aRegister">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-6">
-							<?php include 'formcontratistas.php'; ?>
-						</div>
-						<div class="col-md-6">
-							<div class="contentBardcode">
-								<div class="barCode">
-									<header>
-										<h4>Código</h4>
-									</header>
-									<canvas id="registerBarcode" width="180" height="80"></canvas>
-								</div>
+					<form id="fRegister" class="form" name="form" action="registro_contratista.php" enctype="multipart/form-data" method="POST">
+						<div class="row">
+							<div class="col-md-6">
+								<p>
+									<label for="name">Nombre</label>
+									<input id="name" class="form-control" name="name" type="text" tabindex="1"/>
+								</p>
 
-								<input id="generar" class=" guardar btn btn-success" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar Código de Barra"/>
+								<p>
+									<label for="rut">Rut</label>
+									<input id="rut" class="form-control" name="rut" type="text" tabindex="3" />
+								</p>
+								<p>
+									<label for="empresa">Empresa</label>
+									<input id="empresa" class="form-control" name="empresa" type="text" tabindex="5"/>
+								</p>
+								<p>
+									<label for="dateinic">Fecha de inicio contrato</label>
+									<input id="dateinic" class="form-control" name="dateinic" type="date" tabindex="7"/>
+								</p>
+								<p>
+									<label for="descobra">Descripción Obra</label>
+									<textarea id="descobra" class="form-control" name="descobra" type="text" tabindex="9"></textarea>
+								</p>
+
+							</div>
+							<div class="col-md-6">
+								<p>
+									<label for="lastname">Apellidos</label>
+									<input id="lastname" class="form-control" name="lastname" type="text" tabindex="2"/>
+								</p>
+								<p>
+									<label for="date">Fecha Nacimiento</label>
+									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
+								</p>
+								<p>
+									<label for="contrato">Número de Contrato</label>
+									<input id="contrato" class="form-control" name="contrato" type="number" tabindex="6"/>
+								</p>
+								<p>
+									<label for="datefin">Fecha de fin contrato</label>
+									<input id="datefin" class="form-control" name="datefin" type="date" tabindex="8"/>
+								</p>
+								<p>
+									<label for="foto">Foto de Contratista</label>
+									<input name="foto" type="file" class="" id="foto" tabindex="10" />
+								</p>
+							<!--<div class="contentBardcode">
+									<div class="barCode">
+										<header>
+											<h4>Código</h4>
+										</header>
+										<canvas id="registerBarcode" width="180" height="80"></canvas>
+									</div>
+
+									<input id="generar" class=" guardar btn btn-success" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar Código de Barra"/>
+								</div>
+							-->
 							</div>
 						</div>
-					</div>
+						<hr>
+						<div id="botones">
+							<button type="reset" class="btn btn-danger" >Limpiar</button>
+							<button id="doRegister" class="btn btn-success" type="submit">Registrar</button>
+						</div>
+					</form>
 				</div>
 			</article>
 		</section>

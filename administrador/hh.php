@@ -63,7 +63,7 @@
 
 			</ul>
 		</nav>
-		<header id="titleContent"><h4>Cálculo HH de los Empleados</h4></header>
+		<header id="titleContent"><h4>Cálculo Semanal HH de los Empleados</h4></header>
 		<section>
 			<article id="aSearch">
 			<form method="POST" action="return false" onsubmit="return false">
