@@ -28,13 +28,18 @@
 		<h3>Módulo Administrador</h3>
 		<nav>
 			<ul class="nav nav-tabs">
-				<li class="active">
-					<a href="#">Registrar Empleado al Sistema</a>
-				</li>
-				<li><a href="contratista.php">Registrar Contratista</a></li>
-				<li><a href="buscar.php">Buscar</a></li>
-				<li><a href="hh.php">Horas Hombre</a></li>
-				<li><a href="grafico.php">Estadísticas</a></li>
+				<li role="presentation" class="dropdown active">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Registrar <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu" role="menu">
+				      	<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Empleado</a></li>
+						<li><a href="contratista.php"><span class="icon-business-card"></span>Contratista</a></li>
+				    </ul>
+				  </li>
+				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>
+				<li><a href="hh.php"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Horas Trabajadas</a></li>
+				<li><a href="grafico.php"><span class="icon-stats"></span>Estadísticas</a></li>
 
 			</ul>
 		</nav>
@@ -52,7 +57,7 @@
 									<header>
 										<h4>Código</h4>
 									</header>
-									<canvas id="registerBarcode" width="280" height="80"></canvas>
+									<div id="registerBarcode" width="280" height="80"></div>
 								</div>
 
 								<input id="generar" class=" guardar btn btn-success" type="button" href="javascript:;" onclick="realizaProceso($('#rut').val());return false;" value="Generar Código de Barra"/>
@@ -68,8 +73,11 @@
 	<script src="../scripts/jquery-ui.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
+	<script src="../scripts/bootstrap.js"></script>
 
 	<script>
+		$('.dropdown-toogle').dropdown();
+
 		function realizaProceso(serial){
 		        var parametros = {
 		                "serial" : serial
@@ -83,7 +91,7 @@
 		                },
 
 		                success:  function () {
-		                        $('#registerBarcode').barcode(serial, "codabar", {barWidth:2, barHeight:30, output: "canvas" }
+		                        $('#registerBarcode').barcode(serial, "codabar", {barWidth:2, barHeight:30}
 								);
 		                }
 

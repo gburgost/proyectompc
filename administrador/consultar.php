@@ -8,12 +8,11 @@
 
      if ($persona == "" && $desde == "" && $hasta == "") {
 
-          echo '<br/><div class="alert alert-danger" role="alert">Complete los campos.</div>';
+          echo '<br/><div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Complete los campos.</div>';
 
      }
           elseif ($persona == $_POST['persona'] && $desde == "" && $hasta == "")
           {
-
           list($nombre,$apellido) = explode(" ",$persona);
           /*El query valida si el usuario ingresado existe en la base de datos. Se utiliza la función
           htmlentities para evitar inyecciones SQL.*/
@@ -45,7 +44,10 @@
                     echo '<label>Rut: </label> '.$usu.'.';
                     echo '<br/>';
                     echo '<label>'.$usu3.'</label>.';
-                    echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'" target="_blank" aria-label="Left Align">
+                    echo '<br/><a class="" href="tarjetas.php?rut_persona='.$usu.'&nombre='.$usu1.'&apellido='.$usu2.'&tipo_persona='.$usu3.'" target="_blank">
+                           <span class="icon-creditcards" aria-hidden="true"></span>Generar Tarjeta
+                         </a>';
+                    echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'&desde='.$desde.'&hasta='.$hasta.'" target="_blank" aria-label="Left Align">
                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                          </a>';
                     echo '<table id="tSearch" class="table table-hover" cellspacing="1"> ';
@@ -98,7 +100,12 @@
                               echo "<td>".$fila['hora_entrada']."</td>";
                               echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
-                              echo "<td>".$fila['hora_salida']."</td>";
+                              if ($fila['hora_salida'] > '18:00:00') {
+                                   echo "<td BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                              }
+                              else{
+                                   echo "<td>".$fila['hora_salida']."</td>";
+                              }
                               echo "<td>".$fila['rut_guardia1']."</td>";
                               echo "</tr>";
                          }
@@ -115,7 +122,12 @@
                               echo "<td>".$fila['hora_entrada']."</td>";
                               echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
-                              echo "<td>".$fila['hora_salida']."</td>";
+                              if ($fila['hora_salida'] > '18:00:00') {
+                                   echo "<td BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                              }
+                              else{
+                                   echo "<td>".$fila['hora_salida']."</td>";
+                              }
                               echo "<td>".$fila['rut_guardia1']."</td>";
                               echo "</tr>";
                          }
@@ -125,12 +137,12 @@
                }
                else
                {
-                    echo '<div class="alert alert-danger" role="alert">Completa los campos.</div>';
+                    echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Completa los campos.</div>';
                }
           }
           else
           {
-               echo '<div class="alert alert-danger" role="alert">1.</div>';
+               echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Datos mal ingresados.</div>';
           }
           }
      else{
@@ -156,14 +168,17 @@
                $usu= $rowx['rut_persona'];
                $usu1= $rowx['nombre'];
                $usu2= $rowx['apellido'];
+               $usu3 = $rowx['tipo_persona'];
                }
 
-               //Si el usuario y clave ingresado son correctos (y el usuario está activo en la BD), creamos la sesión del mismo.
+               //Si la persona existe se imprimen los datos
                if($nmyclave != 0)
                {
                     echo '<label>Nombre: </label> '.$usu1.' '.$usu2.'.';
                     echo '<br/>';
                     echo '<label>Rut: </label> '.$usu.'.';
+                    echo '<br/>';
+                    echo '<label>'.$usu3.'</label>.';
                     echo '<a type="button" class="print" href="reporte_historial.php?rut_persona='.$usu.'&desde='.$desde.'&hasta='.$hasta.'" target="_blank" aria-label="Left Align">
                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                          </a>';
@@ -216,7 +231,12 @@
                               echo "<td>".$fila['hora_entrada']."</td>";
                               echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
-                              echo "<td>".$fila['hora_salida']."</td>";
+                              if ($fila['hora_salida'] > '18:00:00') {
+                                   echo "<td BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
+                              }
+                              else{
+                                   echo "<td>".$fila['hora_salida']."</td>";
+                              }
                               echo "<td>".$fila['rut_guardia1']."</td>";
 
                               echo "</tr>";
@@ -234,7 +254,12 @@
                               echo "<td>".$fila['hora_entrada']."</td>";
                               echo "<td>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
-                              echo "<td>".$fila['hora_salida']."</td>";
+                              if ($fila['hora_salida'] > '18:00:00') {
+                                   echo "<td BGCOLOR='#C55E5B' >".$fila['hora_salida']."</td>";
+                              }
+                              else{
+                                   echo "<td>".$fila['hora_salida']."</td>";
+                              }
                               echo "<td>".$fila['rut_guardia1']."</td>";
                               echo "</tr>";
                          }
@@ -244,12 +269,12 @@
                }
                else
                {
-                    echo '<div class="alert alert-danger" role="alert">2.</div>';
+                    echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 2.</div>';
                }
           }
           else
           {
-               echo '<div class="alert alert-danger" role="alert">3</div>';
+               echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 3</div>';
           }
      }
 

@@ -1,6 +1,41 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?-hx8gxx');
+	src:url('../fonts/icomoon.eot?#iefix-hx8gxx') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?-hx8gxx') format('woff'),
+		url('../fonts/icomoon.ttf?-hx8gxx') format('truetype'),
+		url('../fonts/icomoon.svg?-hx8gxx#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-business-card:before {
+	content: "\e600";
+}
+.icon-stats:before {
+	content: "\e601";
+}
+.icon-creditcards:before {
+	content: "\e602";
+}
+
 body{
 	font-size: 16px;
-	background: #B1B1B1;
+	background: #C7C7C7;
 }
 header{
 	position: relative;
@@ -69,7 +104,55 @@ button.center{
 #botones button:last-child{
 	margin-left: 2em;
 }
+#resultados img{
+	display: block;
+	margin: 0 auto;
+}
+.dropdown-menu > li > a{
+	font-size: 16px;
+}
+#tarjeta{
+	background: white;
+	text-align: center;
+}
+.tarjeta{
+	/*background: url("../img/logotarjetas.png")no-repeat fixed center;
+	background-size: 25%;
+	background-position: 545px 20px;*/
 
+	border: solid 1px black;
+	display: block;
+	margin: 5em auto;
+	width: 8.5cm;
+	height: 5.4cm;
+}
+p.iden{
+	text-align: left;
+	border-bottom: solid 1px black;
+	padding-left: .5em;
+}
+p.pie{
+	border-top: solid 1px black;
+	font-size: 12px;
+}
+
+
+.cuerpo{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+.codigo canvas{
+	display: block;
+	margin: 0 auto;
+	height: 20px;
+}
+.imprimir{
+	cursor: pointer;
+}
+span{
+	margin-right: .8em;
+}
 section{
 	background: #fff;
 	border: 1px solid #ddd;
@@ -146,7 +229,10 @@ section article{
     top: .5em;
     padding-right: 1em;
 }
-
+thead{
+	background:rgb(0, 107, 78);
+	color: #fff;
+}
 footer{
 	background: rgba(0,0,0,0.7);
 	border-radius: 5px;

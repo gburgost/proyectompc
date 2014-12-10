@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Estadísticas</title>
 	<link rel="stylesheet" href="../css/normalize.css">
-	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/jquery-ui.css">
@@ -15,6 +14,7 @@
 	<script src="../scripts/functions.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-ui.js"></script>
+	<script src="../scripts/bootstrap.js"></script>
 
 </head>
 <body>
@@ -35,13 +35,18 @@
 		<h3>Módulo Administrador</h3>
 		<nav>
 			<ul class="nav nav-tabs">
-				<li>
-					<a href="index.php">Registrar Empleado al Sistema</a>
-				</li>
-				<li><a href="contratista.php">Registrar Contratista</a></li>
-				<li><a href="#">Buscar</a></li>
-				<li><a href="hh.php">Horas Hombre</a></li>
-				<li class="active"><a href="grafico.php">Estadísticas</a></li>
+				<li role="presentation" class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Registrar <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu" role="menu">
+				      	<li><a href="index.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Empleado</a></li>
+						<li><a href="contratista.php"><span class="icon-business-card"></span>Contratista</a></li>
+				    </ul>
+				  </li>
+				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>
+				<li><a href="hh.php"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Horas Trabajadas</a></li>
+				<li class="active"><a href="#"><span class="icon-stats"></span>Estadísticas</a></li>
 
 			</ul>
 		</nav>
@@ -49,29 +54,33 @@
 		<section>
 			<article id="aSearch">
 			<script>
-AmCharts.loadJSON = function(url) {
-  // create the request
-  if (window.XMLHttpRequest) {
-    // IE7+, Firefox, Chrome, Opera, Safari
-    var request = new XMLHttpRequest();
-  } else {
-    // code for IE6, IE5
-    var request = new ActiveXObject('Microsoft.XMLHTTP');
-  }
+				$('.dropdown-toogle').dropdown();
 
-  // load it
-  // the last "false" parameter ensures that our code will wait before the
-  // data is loaded
-  request.open('GET', url, false);
-  request.send();
+				AmCharts.loadJSON = function(url) {
+				  // create the request
+				  if (window.XMLHttpRequest) {
+				    // IE7+, Firefox, Chrome, Opera, Safari
+				    var request = new XMLHttpRequest();
+				  } else {
+				    // code for IE6, IE5
+				    var request = new ActiveXObject('Microsoft.XMLHTTP');
+				  }
 
-  // parse adn return the output
-  return eval(request.responseText);
-};
-  </script>
+				  // load it
+				  // the last "false" parameter ensures that our code will wait before the
+				  // data is loaded
+				  request.open('GET', url, false);
+				  request.send();
+
+				  // parse adn return the output
+				  return eval(request.responseText);
+				};
+  			</script>
 
   <!-- chart container -->
+  <p>Horas</p>
   <div id="chartdiv" style="width: 100%; height: 300px;"></div>
+  <p align="right">Meses</p>
 
   <!-- the chart code -->
   <script>

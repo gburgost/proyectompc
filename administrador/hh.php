@@ -12,7 +12,10 @@
 	<script src="../scripts/functions.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-ui.js"></script>
+	<script src="../scripts/bootstrap.js"></script>
 	<script>
+		$('.dropdown-toogle').dropdown();
+
 		$(function() {
 
 			//autocomplete
@@ -45,13 +48,18 @@
 		<h3>Módulo Administrador</h3>
 		<nav>
 			<ul class="nav nav-tabs">
-				<li>
-					<a href="index.php">Registrar Empleado al Sistema</a>
-				</li>
-				<li><a href="contratista.php">Registrar Contratista</a></li>
-				<li><a href="buscar.php">Buscar</a></li>
-				<li class="active"><a href="hh.php">Horas Hombre</a></li>
-				<li><a href="grafico.php">Estadísticas</a></li>
+				<li role="presentation" class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Registrar <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu" role="menu">
+				      	<li><a href="index.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Empleado</a></li>
+						<li><a href="contratista.php"><span class="icon-business-card"></span>Contratista</a></li>
+				    </ul>
+				  </li>
+				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>
+				<li class="active"><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Horas Trabajadas</a></li>
+				<li><a href="grafico.php"><span class="icon-stats"></span>Estadísticas</a></li>
 
 			</ul>
 		</nav>
@@ -61,23 +69,28 @@
 			<form method="POST" action="return false" onsubmit="return false">
 				<div class="row">
 					<div class="col-md-6">
-						<label for="desde">Mes: </label>
-						<input type="month" id="desde" name="desde" class="form-control"/><br/>
+						<label for="desde">Desde: </label>
+						<input type="date" id="desde" name="desde" class="form-control"/><br/>
+
+						<!--<label for="desde">Mes: </label>
+						<input type="month" id="desde" name="desde" class="form-control"/><br/>-->
 					</div>
 					<div class="col-md-6">
-						<button class="btn center btn-success"  onclick="consultar(document.getElementById('desde').value);">Consultar</button>
+						<label for="hasta">Hasta: </label>
+						<input type="date" id="hasta" name="hasta" class="form-control"/><br/>
+						<button class="btn center btn-success"  onclick="consultar(document.getElementById('desde').value, document.getElementById('hasta').value);">Consultar</button>
 						<button class="btn center btn-danger" type="reset">Limpiar</button>
 					</div>
 				</div>
 				<hr>
 			</form>
 			<script>
-                function consultar(desde)
+                function consultar(desde, hasta)
                 {
                   $.ajax({
                     url: "consultarhh.php",
                     type: "POST",
-                    data: "desde="+desde,
+                    data: "desde="+desde+"&hasta="+hasta,
                     beforeSend: function () {
 		                        $("#resultados").html("<img src='../img/load.gif' />");
 		                },

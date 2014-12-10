@@ -107,9 +107,16 @@ function NbLines($w,$txt)
 
 function Header()
 {
+	 $ArrayFecha =explode('-', $inicio = $_GET['desde']);
+     $inicio = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
+
+     $ArrayFecha =explode('-', $fin = $_GET['hasta']);
+     $fin = $ArrayFecha[2] ."-".$ArrayFecha[1] ."-".$ArrayFecha[0];
 
 	$this->SetFont('Arial','',25);
 	$this->Text(100,30,'Historial Empleado',0,'C', 0);
+	$this->SetFont('Arial','',12);
+	$this->Text(195,81.3,'Fechas: '.$inicio.' a '.$fin,0,'C',0);
 	$this->Image('archivos/logompc.jpg' , 21 ,10, 35 , 38,'JPG');
 	$this->Ln(50);
 }
@@ -147,13 +154,11 @@ function Footer()
     $pdf->Cell(0,6,'Rut: '.$fila['rut_persona'],0,1);
     $pdf->Cell(0,6,$fila['tipo_persona'],0,1);
 
-
-
 	$pdf->Ln(10);
 
 	$pdf->SetWidths(array(40, 35, 45, 40, 40, 40));
 	$pdf->SetFont('Arial','B',12);
-	$pdf->SetFillColor(85,107,47);
+	$pdf->SetFillColor(0,107,78);
     $pdf->SetTextColor(255);
 
 		for($i=0;$i<1;$i++)
@@ -162,10 +167,27 @@ function Footer()
 			}
 
 	$historial = $con->conectar();
-	$persona= $_GET['rut_persona'];
+	$persona = $_GET['rut_persona'];
 	$desde 	 = $_GET['desde'];
 	$hasta	 = $_GET['hasta'];
-	$strConsulta =
+
+	if (($desde == "")AND($hasta == "")) {
+		$strConsulta =
+		 "SELECT registro_persona.fecha_entrada,
+				 registro_persona.hora_entrada,
+			 	 registro_persona.fecha_salida,
+				 registro_persona.hora_salida,
+				 registro_persona.rut_guardia1,
+	             guardia.nombre_guardia,
+	             guardia.apellido_guardia,
+	             guardia.rut_guardia
+
+	FROM registro_persona
+	Inner Join guardia ON registro_persona.rut_guardia = guardia.rut_guardia
+	WHERE registro_persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '2013-01-01' AND registro_persona.fecha_salida <= '2099-12-31' ORDER BY cod_registro DESC";
+	}
+	else{
+		$strConsulta =
 		 "SELECT registro_persona.fecha_entrada,
 				 registro_persona.hora_entrada,
 			 	 registro_persona.fecha_salida,
@@ -178,6 +200,8 @@ function Footer()
 	FROM registro_persona
 	Inner Join guardia ON registro_persona.rut_guardia = guardia.rut_guardia
 	WHERE registro_persona.rut_persona = '$persona' AND registro_persona.fecha_entrada >= '$desde' AND registro_persona.fecha_salida <= '$hasta' ORDER BY cod_registro DESC";
+	}
+
 
 	$historial = mysql_query($strConsulta);
 	$numfilas = mysql_num_rows($historial);

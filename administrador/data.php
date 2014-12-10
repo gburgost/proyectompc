@@ -22,7 +22,7 @@ $query = "SELECT
           FROM registro_persona
           Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
           WHERE tipo_persona = 'Empleado'
-          GROUP BY fecha_entrada";
+          GROUP BY fecha_entrada, fecha_salida";
 $result = mysql_query( $query );
 
 // All good?
