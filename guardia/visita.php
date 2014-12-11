@@ -9,7 +9,7 @@ if($_SESSION["autentica"] != "SIP"){
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>MPC registros</title>
+	<title>Registrar Visita</title>
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -18,33 +18,46 @@ if($_SESSION["autentica"] != "SIP"){
 
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
-	<script src="../scripts/jquery-ui.js"></script>
+	<script src="../scripts/prefixfree.min.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
+	<script src="../scripts/reloj.js"></script>
+	<script src="../scripts/jquery-ui.js"></script>
+	<script src="../scripts/bootstrap.js"></script>
 
 	<script>
-		function realizaProceso(serial){
-		        var parametros = {
-		                "serial" : serial
-		        };
-		        $.ajax({
-		                data:  parametros,
-		                url:   '#',
-		                type:  'post',
-		                beforeSend: function () {
-		                        $("#registerBarcode").html("Procesando, espere por favor...");
-		                },
+		function registrar(name,rut,empresa,lastname,date,visitado)
+        {
+        var parametros = {
+		    "name" : name,
+		    "rut" : rut,
+		    "empresa" : empresa,
+		    "lastname" : lastname,
+		    "date" : date,
+		    "visitado" : visitado
+		 };
+          $.ajax({
+            url: "registro_visita.php",
+            type: "POST",
+            data: parametros,
+            success: function(resp){
+              $('#resultado').html(resp);
+              return false;
 
-		                success:  function () {
-		                        $('#registerBarcode').barcode(serial, "codabar", {barWidth:1, barHeight:60, output: "canvas" }
-								);
-		                }
+            }
+          });
+        }
+		$(function() {
+			//autocomplete
+			$(".auto").autocomplete({
+				source: "search.php",
+				minLength: 1
+			});
 
-		        });
-		}
+		});
 	</script>
 </head>
-<body>
+<body onload="Comenzar()">
 	<div id="mainWrapper">
 		<header>
 			<figure id="logo">
@@ -74,29 +87,70 @@ if($_SESSION["autentica"] != "SIP"){
 		<nav>
 			<ul class="nav nav-tabs">
 				<li>
-					<a href="index.php">Acceso Empleado</a>
+					<a href="index.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Acceso</a>
 				</li>
-				<li class="active">
-					<a href="#">Registrar Visita</a>
-				</li>
-				<li>
-					<a href="accesovisita.php">Acceso Visita</a>
-				</li>
+				<li role="presentation" class="dropdown active">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Visita <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu" role="menu">
+				      	<li><a href="visita.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Registrar</a></li>
+						<li><a href="ticket.php"><span class="icon-business-card"></span>Generar Ticket</a></li>
+
+				    </ul>
+				  </li>
 
 			</ul>
 		</nav>
-		<header id="titleContent"><h4>Ingresar Nueva Visita</h4><hr></header>
+		<header id="titleContent">
+		<h4 style="padding-bottom:1.5em;">Registar Visita</h4>
+		<div id="reloj"></div>
+		<hr></header>
 		<section>
 			<article id="aRegister">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-6">
-							<?php include 'formulariovisita.php'; ?>
+
+				<div id="resultado"></div>
+
+					<form method="POST" action="return false" onsubmit="return false">
+						<div class="row">
+							<div class="col-md-6">
+								<p>
+									<label for="name">Nombre</label>
+									<input id="name" class="form-control" name="name" type="text" required tabindex="1"/>
+								</p>
+								<p>
+									<label for="rut">Rut</label>
+									<input id="rut" class="form-control" name="rut" type="text" tabindex="3" />
+								</p>
+								<p>
+									<label for="empresa">Empresa: </label>
+									<input id="empresa" name="empresa"type="text" class="form-control" tabindex="5"/>
+								</p>
+							</div>
+							<div class="col-md-6">
+								<p>
+									<label for="lastname">Apellido</label>
+									<input id="lastname" class="form-control" name="lastname" type="text" required tabindex="2"/>
+								</p>
+								<p>
+									<label for="date">Fecha Nacimiento</label>
+									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
+								</p>
+								<p>
+									<label for="visitado">Visita a: </label>
+									<input id="visitado" name="visitado" class="auto form-control" type="text" tabindex="6"/>
+								</p>
+							</div>
+							<p>
 						</div>
-						<div class="col-md-6">
+						<hr>
+						<div id="botones">
+							<button type="reset" class="btn btn-danger" >Limpiar</button>
+							<button id="doRegister" class="btn btn-success"onclick = "registrar(document.getElementById('name').value, document.getElementById('rut').value, document.getElementById('empresa').value, document.getElementById('lastname').value,document.getElementById('date').value,document.getElementById('visitado').value);" >Registrar</button>
 
 						</div>
-					</div>
+					</form>
 				</div>
 			</article>
 		</section>

@@ -6,10 +6,10 @@
 	</p>
 	<div class="row">
 		<div class="col-md-6">
-			<p>
-				<label for="visitado">Visita a: </label>
-				<input id="visitado" name="visitado" class="auto form-control" type="text"/>
-			</p>
+				<p>
+					<label for="visitado">Visita a: </label>
+					<input id="visitado" name="visitado" class="auto form-control" type="text"/>
+				</p>
 		</div>
 		<div class="col-md-6">
 			<p>

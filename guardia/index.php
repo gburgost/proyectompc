@@ -22,8 +22,10 @@ if($_SESSION["autentica"] != "SIP"){
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
 	<script src="../scripts/reloj.js"></script>
+	<script src="../scripts/bootstrap.js"></script>
 
 	<script>
+	$('.dropdown-toogle').dropdown();
         function entrar(rut)
         {
           $.ajax({
@@ -83,19 +85,25 @@ if($_SESSION["autentica"] != "SIP"){
 		<nav>
 			<ul class="nav nav-tabs">
 				<li class="active">
-					<a href="#">Acceso Empleado</a>
+					<a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Acceso</a>
 				</li>
-				<li>
-					<a href="visita.php">Registrar Visita</a>
-				</li>
-				<li>
-					<a href="accesovisita.php">Acceso Visita</a>
-				</li>
+
+				<li role="presentation" class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Visita <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu" role="menu">
+				      	<li><a href="visita.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Registrar</a></li>
+						<li><a href="ticket.php"><span class="icon-business-card"></span>Generar Ticket</a></li>
+
+				    </ul>
+				  </li>
 
 			</ul>
 		</nav>
 		<header id="titleContent">
 			<h4>Acceso de Entrada y Salida</h4>
+			<h5>Empleado y Contratista</h5>
 
 			<div id="reloj"></div>
 

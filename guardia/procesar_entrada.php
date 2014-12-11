@@ -65,10 +65,10 @@
 		          	$consulta = mysqli_query($conexion, "SELECT * FROM persona WHERE rut_persona = '".htmlentities($_POST["rut"])."'");
 		          	$estado = "abierto";
 		          	$datos = mysqli_fetch_array($consulta);
-    				$nombre = $datos['nombre'];
-    				$apellido = $datos['apellido'];
-    				$tipopersona = $datos['tipo_persona'];
-    				$foto = $datos['foto'];
+        				$nombre = $datos['nombre'];
+        				$apellido = $datos['apellido'];
+        				$tipopersona = $datos['tipo_persona'];
+        				$foto = $datos['foto'];
 
           	 		mysqli_query($conexion, "INSERT INTO registro_persona (cod_registro, nro_garita, rut_persona, rut_guardia, fecha_entrada, hora_entrada, fecha_salida, hora_salida, estado) VALUES('', '$nro_garita', '$rut_persona', '$guardia', '$fecha', '$hora', '', '', '$estado' )");
             	echo '<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Registro de <strong>entrada</strong> exitoso. <br/><br/>Nombre: '.$nombre.' '.$apellido.' <br/> Hora entrada: '.$hora.'</br>Fecha entrada: '.$fecha.'<br/>
@@ -77,7 +77,13 @@
 		          }
           }
           else{
-          	$estado = "abierto";
+              $consulta = mysqli_query($conexion, "SELECT * FROM persona WHERE rut_persona = '".htmlentities($_POST["rut"])."'");
+              $estado = "abierto";
+              $datos = mysqli_fetch_array($consulta);
+              $nombre = $datos['nombre'];
+              $apellido = $datos['apellido'];
+              $tipopersona = $datos['tipo_persona'];
+              $foto = $datos['foto'];
           	 mysqli_query($conexion, "INSERT INTO registro_persona (cod_registro, nro_garita, rut_persona, rut_guardia, fecha_entrada, hora_entrada, fecha_salida, hora_salida, estado) VALUES('', '$nro_garita', '$rut_persona', '$guardia', '$fecha', '$hora', '', '', '$estado' )");
             	echo '<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Registro de <strong>entrada</strong> exitoso. <br/><br/>Nombre: '.$nombre.' '.$apellido.' <br/> Hora entrada: '.$hora.'</br>Fecha entrada: '.$fecha.'<br/>
             	<div class="imguser"><img src="../administrador/'.$foto.'" widht="100" height = "100"/><p>'.$tipopersona.'</p></div></div>';

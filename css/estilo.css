@@ -232,12 +232,7 @@ section article{
     position: absolute;
     right: 0;
     top: 0em;
-    padding: .3em 1em;
-}div.time{
-	position: absolute;
-	right: 3em;
-	top: .4em;
-	font-size: 30px;
+    padding: 1em 1em;
 }
 thead{
 	background:rgb(0, 107, 78);
