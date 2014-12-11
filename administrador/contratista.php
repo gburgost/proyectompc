@@ -147,7 +147,7 @@
 	</div>
 	<footer>
 		<p>
-			hola
+			- <strong>MPControl</strong> © 2014, un producto <strong>LPdigital</strong> -
 		</p>
 	</footer>
 </body>

@@ -32,6 +32,9 @@
 .icon-creditcards:before {
 	content: "\e602";
 }
+.icon-truck:before {
+	content: "\e603";
+}
 
 body{
 	font-size: 16px;
@@ -223,11 +226,18 @@ section article{
 	cursor: pointer;
 }
 #reloj{
+	border-left: solid 1px #eee;
+	font-size: 18px;
 	text-align: right;
     position: absolute;
     right: 0;
-    top: .5em;
-    padding-right: 1em;
+    top: 0em;
+    padding: .3em 1em;
+}div.time{
+	position: absolute;
+	right: 3em;
+	top: .4em;
+	font-size: 30px;
 }
 thead{
 	background:rgb(0, 107, 78);

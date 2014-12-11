@@ -157,7 +157,7 @@
 	</script>
 	<footer>
 		<p>
-			- © Copyright 2014 -
+			- <strong>MPControl</strong> © 2014, un producto <strong>LPdigital</strong> -
 		</p>
 	</footer>
 </body>

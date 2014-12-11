@@ -96,6 +96,7 @@ if($_SESSION["autentica"] != "SIP"){
 		</nav>
 		<header id="titleContent">
 			<h4>Acceso de Entrada y Salida</h4>
+
 			<div id="reloj"></div>
 
 			<hr></header>
