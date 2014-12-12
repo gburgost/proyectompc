@@ -5,8 +5,6 @@
 	$apellido 			= $_POST['lastname'];
 	$rut1 				= $_POST['rut'];
 	$fechanacimiento 	= $_POST['date'];
-	$empresa			= $_POST['empresa'];
-	$visitado			= $_POST['visitado'];
 	$tipo_persona	 	= "Visita";
 	$foto 				= "archivos/usuario.jpg";
 

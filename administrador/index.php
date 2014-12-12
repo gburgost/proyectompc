@@ -1,4 +1,10 @@
 <?php include 'conexion.php'; ?>
+<?@session_start();
+if($_SESSION["autentica"] != "SIP"){
+	header("Location: login.php");
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,8 +26,20 @@
 				<h1>Sistema de Control de <br>Acceso y Asistencia.</h1>
 			</div>
 			<div class="usuario">
-				<strong>Administrador</strong>
-				<p>Cristian Seura</p>
+				<strong><?php
+					$guardia = $_SESSION["usuarioactual"];
+					$encontrar = mysqli_query($conexion, "SELECT nombre, apellido FROM persona WHERE rut_persona = '$guardia'");
+					$columna = mysqli_fetch_array($encontrar);
+					echo 'Administrador: '.$columna["nombre"].' '.$columna["apellido"];
+
+					?></strong>
+					<br>
+					<strong><?php
+					echo 'Rut                  : ' .$guardia;
+					?></strong>
+					<br>
+					<a href="logout.php">Cerrar Sesión</a>
+
 			</div>
 
 		</header>
@@ -35,6 +53,9 @@
 				    <ul class="dropdown-menu" role="menu">
 				      	<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Empleado</a></li>
 						<li><a href="contratista.php"><span class="icon-business-card"></span>Contratista</a></li>
+						<li><a href="vehiculo.php"><span class="icon-business-card"></span>Vehiculos</a></li>
+						<li><a href="herramienta.php"><span class="glyphicon glyphicon-wrench"></span>Herramientas</a></li>
+						<li><a href="maquina.php"><span class="icon-business-card"></span>Maquinas</a></li>
 				    </ul>
 				  </li>
 				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>

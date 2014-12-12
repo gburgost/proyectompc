@@ -31,10 +31,8 @@ if($_SESSION["autentica"] != "SIP"){
         var parametros = {
 		    "name" : name,
 		    "rut" : rut,
-		    "empresa" : empresa,
 		    "lastname" : lastname,
-		    "date" : date,
-		    "visitado" : visitado
+		    "date" : date
 		 };
           $.ajax({
             url: "registro_visita.php",
@@ -123,10 +121,6 @@ if($_SESSION["autentica"] != "SIP"){
 									<label for="rut">Rut</label>
 									<input id="rut" class="form-control" name="rut" type="text" tabindex="3" />
 								</p>
-								<p>
-									<label for="empresa">Empresa: </label>
-									<input id="empresa" name="empresa"type="text" class="form-control" tabindex="5"/>
-								</p>
 							</div>
 							<div class="col-md-6">
 								<p>
@@ -137,17 +131,13 @@ if($_SESSION["autentica"] != "SIP"){
 									<label for="date">Fecha Nacimiento</label>
 									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
 								</p>
-								<p>
-									<label for="visitado">Visita a: </label>
-									<input id="visitado" name="visitado" class="auto form-control" type="text" tabindex="6"/>
-								</p>
 							</div>
 							<p>
 						</div>
 						<hr>
 						<div id="botones">
 							<button type="reset" class="btn btn-danger" >Limpiar</button>
-							<button id="doRegister" class="btn btn-success"onclick = "registrar(document.getElementById('name').value, document.getElementById('rut').value, document.getElementById('empresa').value, document.getElementById('lastname').value,document.getElementById('date').value,document.getElementById('visitado').value);" >Registrar</button>
+							<button id="doRegister" class="btn btn-success"onclick = "registrar(document.getElementById('name').value, document.getElementById('rut').value, document.getElementById('lastname').value,document.getElementById('date').value);" >Registrar</button>
 
 						</div>
 					</form>

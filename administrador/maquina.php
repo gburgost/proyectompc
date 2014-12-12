@@ -6,35 +6,43 @@ if($_SESSION["autentica"] != "SIP"){
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Buscar</title>
+	<title>MPC registros</title>
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/estilo.css">
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
+	<script src="../scripts/prefixfree.min.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
-	<script src="../scripts/jquery-ui.js"></script>
+	<script src="../scripts/jquery-barcode.js"></script>
 	<script src="../scripts/bootstrap.js"></script>
+
 	<script>
 		$('.dropdown-toogle').dropdown();
 
-		$(function() {
+		function realizaProceso(rut){
+		        var parametros = {
+		                "rut" : rut
+		        };
+		        $.ajax({
+		                data:  parametros,
+		                url:   '#',
+		                type:  'post',
+		                beforeSend: function () {
+		                        $("#registerBarcode").html("Procesando, espere por favor...");
+		                },
 
-			//autocomplete
-			$(".auto").autocomplete({
-				source: "search.php",
-				minLength: 1
-			});
+		                success:  function () {
+		                        $('#registerBarcode').barcode(rut, "codabar", {barWidth:1, barHeight:60, output: "canvas" }
+								);
+		                }
 
-		});
-		$(document).ready( function () {
-		    $('#tSearch').DataTable();
-		} );
+		        });
+		}
 	</script>
 </head>
 <body>
@@ -67,7 +75,7 @@ if($_SESSION["autentica"] != "SIP"){
 		<h3>Módulo Administrador</h3>
 		<nav>
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="dropdown">
+				<li role="presentation" class="dropdown active">
 				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 				     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Registrar <span class="caret"></span>
 				    </a>
@@ -76,62 +84,67 @@ if($_SESSION["autentica"] != "SIP"){
 						<li><a href="contratista.php"><span class="icon-business-card"></span>Contratista</a></li>
 						<li><a href="vehiculo.php"><span class="icon-business-card"></span>Vehiculos</a></li>
 						<li><a href="herramienta.php"><span class="glyphicon glyphicon-wrench"></span>Herramientas</a></li>
-						<li><a href="maquina.php"><span class="icon-business-card"></span>Maquinas</a></li>
+						<li><a href="#"><span class="icon-business-card"></span>Maquinas</a></li>
 				    </ul>
 				  </li>
-				<li class="active"><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>
+				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>
 				<li><a href="hh.php"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Horas Trabajadas</a></li>
 				<li><a href="grafico.php"><span class="icon-stats"></span>Estadísticas</a></li>
 
 			</ul>
 		</nav>
-		<header id="titleContent"><h4>Buscar Persona</h4></header>
+		<header id="titleContent"><h4>Registrar Maquina</h4><hr></header>
 		<section>
-			<article id="aSearch">
-			<form method="POST" action="return false" onsubmit="return false">
-				<div class="row">
-					<div class="col-md-6">
-						<label>Nombre: </label>
-						<input id="persona" class="auto form-control" type="text" required/>
-					</div>
-					<div class="col-md-6">
-						<label for="desde">Desde: </label>
-						<input type="date" id="desde" name="desde" class="form-control"/><br/>
-						<label for="hasta">Hasta: </label>
-						<input type="date" id="hasta" name="hasta" class="form-control"/><br/>
-						<button class="btn btn-success"  onclick="consultar(document.getElementById('persona').value,document.getElementById('desde').value, document.getElementById('hasta').value);">Consultar</button>
-						<button class="btn btn-danger" type="reset">Limpiar</button>
-					</div>
-				</div>
-				<hr>
-			</form>
-			<script>
-                function consultar(persona, desde, hasta)
-                {
-                  $.ajax({
-                    url: "consultar.php",
-                    type: "POST",
-                    data: "persona="+persona+"&desde="+desde+"&hasta="+hasta,
-                    beforeSend: function () {
-		                        $("#resultados").html("<img src='../img/load.gif' />");
-		                },
-                    success: function(resp){
-                      $('#resultados').html(resp);
-                    }
-                  });
-                }
-                </script>
-                <div id="resultados">
-			</div>
-			</article>
+			<article id="aRegister">
+				<div class="container-fluid">
+					<form id="fRegister" class="form" name="form" action="#" enctype="multipart/form-data" method="POST">
+						<div class="row">
+						<div class="col-md-6">
+							<p>
+								<label for="name">Nombre</label>
+								<input id="name" class="form-control" name="name" type="text" />
+							</p>
 
-		</section>
+	<p>
+		<label for="tipo_contrato">Propiedad de la Maquina</label>
+		<select name="tipo_contrato" class="form-control" id="tipo_contrato">
+			<option>Seleccione Propiedad de la Maquina</option>
+			<option>Interno</option>
+			<option>Externo</option>
+		</select>
+	</p>
+</div>
+<div class="col-md-6">
+
+	<p>
+		<label for="name">Tipo de Máquina</label>
+		<input id="name" class="form-control" name="name" type="text" />
+	</p>
+
+
+	<p>
+		                    <label for="descobra">Descripción de la Máquina</label>
+		                     <textarea id="descobra" class="form-control" name="descobra" type="text"></textarea>
+		                     </p>
+		                   <hr>
+		                  <p>
+		              </div>
+		              </div>
+	<div id="botones">
+		                     	<button type="reset" class="btn btn-danger" >Limpiar</button>
+		                     	<button id="doRegister" class="btn btn-success" type="submit">Registrar</button>
+		                     </div>
+		                     </p>
+		                     </form>
+
+		                     </div>
+		                     </article>
+		                     </section>
 	</div>
 	<footer>
 		<p>
 			- <strong>MPControl</strong> © 2014, un producto <strong>LPdigital</strong> -
 		</p>
 	</footer>
-
 </body>
 </html>

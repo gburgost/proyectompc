@@ -21,7 +21,6 @@ $query = "SELECT
              SUM(hora_salida-hora_entrada)
           FROM registro_persona
           Inner Join persona ON registro_persona.rut_persona = persona.rut_persona
-          WHERE tipo_persona = 'Empleado'
           GROUP BY fecha_entrada, fecha_salida";
 $result = mysql_query( $query );
 
@@ -41,7 +40,13 @@ while ( $row = mysql_fetch_assoc( $result ) ) {
   echo $prefix . " {\n";
   echo '  "fecha": "' . $row['fecha_entrada'] . '",' . "\n";
   echo '  "value1": ';
-  echo $row['SUM(hora_salida-hora_entrada)']/10000;
+  $suma = $row['SUM(hora_salida-hora_entrada)']/10000;
+  if ($suma>9) {
+    echo $suma;
+  }
+  else{
+    echo "0";
+  }
   echo '' . "\n";
   echo " }";
   $prefix = ",\n";
