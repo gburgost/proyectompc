@@ -45,16 +45,6 @@
 				<?php include ('trabajador.php') ?>
 
 
-
-
-
-
-
-
-
-
-
-
 			<?php /*
 				include_once("conexion.php");
 				$con = new DB;

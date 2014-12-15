@@ -18,6 +18,9 @@
 	$visita 	= $_GET['visita'];
 	$visitado	= $_GET['empleado'];
 	$empresa	= $_GET['empresa'];
+	 date_default_timezone_set("Chile/Continental");
+	$fecha=date("Y-m-d");
+	$hora=date("H:i:s");
 
 	$Arraynombre =explode(' ', $nombre = $_GET['visita']);
     $nombre = $Arraynombre[0];
@@ -30,13 +33,23 @@
        {
        		$rut = $rowx['rut_persona'];
        }
-	echo "<div class='tarjeta'>";
-	echo "<p class='iden'>Ticket Visita</p>";
-	echo "<div class='cuerpo'>";
-	echo "<p><strong>".$visita."</strong></p>";
+	echo "<div class='ticket'>";
+	echo "<div class='tituloticket'><img src='../img/logompc.png' width='80'/><h3>Ticket Provisorio </h3></div>";
+	echo "<div class=row>";
+	echo "<div class='izquierda'>";
+	echo "<div class='cuerpoticket'>";
+	echo "<p>Nombre de visita: <strong>".$visita."</strong></p>";
+	echo "<p>Rut: ".$rut."</p>";
 	echo "<p>Visita a: ".$visitado."</p>";
 	echo "<p>Empresa: ".$empresa."</p>";
-	echo"<canvas id='codigo' width='280' height='49'></canvas>";
+	echo "<p>Hora de entrada: ".$hora."</p>";
+	echo "<p>Fecha: ".$fecha."</p>";
+	echo "</div>";
+	echo "</div>";
+	echo "<div class='derecha'>";
+	echo "<canvas id='codigo' width='280' height='49'></canvas><br/>";
+	echo "<p>Firma:_________________________</p>";
+	echo "</div>";
 	echo "</div>";
 	echo "<p class='pie'>Metalúrgica Puerto Caldera</p>";
 	echo "</div>";

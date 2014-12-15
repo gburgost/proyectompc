@@ -100,9 +100,9 @@ if($_SESSION["autentica"] != "SIP"){
   			</script>
 
   <!-- chart container -->
-  <p>Horas</p>
+  <p>Cantidad de veces</p>
   <div id="chartdiv" style="width: 100%; height: 300px;"></div>
-  <p align="right">Meses</p>
+  <p align="right">Tiempo</p>
 
   <!-- the chart code -->
   <script>
@@ -124,22 +124,15 @@ AmCharts.ready(function() {
   // GRAPHS
 
   var graph1 = new AmCharts.AmGraph();
-  graph1.valueField = "value1";
-  graph1.bullet = "round";
-  graph1.bulletBorderColor = "#FFFFFF";
-  graph1.bulletBorderThickness = 2;
-  graph1.lineThickness = 2;
-  graph1.lineAlpha = 0.5;
-  chart.addGraph(graph1);
+  	graph1.valueField = "value1";
+	graph1.colorField = "color";
+	graph1.balloonText = "<b>[[category]]: [[value]]</b>";
+	graph1.type = "column";
+	graph1.lineAlpha = 0;
+	graph1.fillAlphas = 1;
+	chart.addGraph(graph1);
 
-  var graph2 = new AmCharts.AmGraph();
-  graph2.valueField = "value2";
-  graph2.bullet = "round";
-  graph2.bulletBorderColor = "#FFFFFF";
-  graph2.bulletBorderThickness = 2;
-  graph2.lineThickness = 2;
-  graph2.lineAlpha = 0.5;
-  chart.addGraph(graph2);
+
 
   // CATEGORY AXIS
   chart.categoryAxis.parseDates = true;

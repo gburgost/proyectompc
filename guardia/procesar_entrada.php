@@ -19,7 +19,7 @@
 	$nro_garita = $fil['nro_garita'];
 
 	//Se realiza la validación si el usuario existe en el sistema
-	$myusuario = mysqli_query($conexion, "SELECT rut_persona, nombre, apellido FROM persona WHERE rut_persona =  '".htmlentities($_POST["rut"])."' AND tipo_persona ='Empleado' AND tipo_persona = 'Constratista'");
+	$myusuario = mysqli_query($conexion, "SELECT rut_persona, nombre, apellido FROM persona WHERE rut_persona =  '".htmlentities($_POST["rut"])."'");
     $nmyusuario = mysqli_num_rows($myusuario);
 
     $lista = mysqli_query($conexion,"SELECT * FROM lista_negra
@@ -90,6 +90,6 @@
               echo "<script>setTimeout('document.location.reload()',5000);</script>";
           }
      }else{
-          echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> El rut ingresado no esta registrado en la empresa o es una Visita.</div>';
+          echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> El rut ingresado no esta registrado en la empresa.</div>';
      }
 ?>

@@ -1,6 +1,40 @@
 <?php
 	include 'conexion.php';
 
+  if(empty($_POST["name"])){
+      echo "<script>
+              alert('Debe ingresar un nombre');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["lastname"])){
+      echo "<script>
+              alert('Debe ingresar un apellidos');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["rut"])){
+      echo "<script>
+              alert('Debe ingresar un rut');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["date"])){
+      echo "<script>
+              alert('Debe ingresar una fecha');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["cargo"])){
+      echo "<script>
+              alert('Debe ingresar el cargo');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["tipo_contrato"])){
+      echo "<script>
+              alert('Debe ingresar el tipo de contrato');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["fechavin"])){
+      echo "<script>
+              alert('Debe ingresar una fecha');
+              location.href='index.php';</script>";
+    }else if (empty($_POST["id_departamento"])){
+      echo "<script>
+              alert('Debe ingresar el departamento');
+              location.href='index.php';</script>";
+    }
+    else{
 	/*move_uploaded_file($_FILES["foto"]["tmp_name"],"archivos/" . $_FILES["foto"]["name"]);
 	$tfoto = "archivos/".$_FILES["foto"]["name"]."";*/
 
@@ -21,16 +55,16 @@
             move_uploaded_file($_FILES["foto"]["tmp_name"],
             "archivos/" . $_FILES["foto"]["name"]);
             	$nombre = $_POST['name'];
-				$apellido = $_POST['lastname'];
-				$rut1 = $_POST['rut'];
-				$rut2 = $_POST['rut'];
-				$fechanacimiento = $_POST['date'];
-				$id_departamento = $_POST['id_departamento'];
-				$cargo = $_POST['cargo'];
-				$tipo_contrato = $_POST['tipo_contrato'];
-				$fechavin = $_POST['fechavin'];
-				$fechades = $_POST['fechades'];
-				$tipo_persona = "Empleado";
+      				$apellido = $_POST['lastname'];
+      				$rut1 = $_POST['rut'];
+      				$rut2 = $_POST['rut'];
+      				$fechanacimiento = $_POST['date'];
+      				$id_departamento = $_POST['id_departamento'];
+      				$cargo = $_POST['cargo'];
+      				$tipo_contrato = $_POST['tipo_contrato'];
+      				$fechavin = $_POST['fechavin'];
+      				$fechades = $_POST['fechades'];
+      				$tipo_persona = "Empleado";
 
               $tfoto = "archivos/".$_FILES["foto"]["name"]."";
 
@@ -54,6 +88,7 @@
         // Si el usuario intenta subir algo que no es una imagen o una imagen que pesa mas de 20 KB mostramos este mensaje
         echo "Archivo no permitido";
     }
+  }
 
 
 /*

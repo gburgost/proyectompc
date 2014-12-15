@@ -138,14 +138,52 @@ p.pie{
 	border-top: solid 1px black;
 	font-size: 12px;
 }
-
-
 .cuerpo{
 	display: block;
 	margin: 0 auto;
 	text-align: center;
 }
+.ticket{
+	border: solid 1px black;
+	display: block;
+	margin: 5em auto;
+	width: 600px;
+	height: 323px;
+}
+.tituloticket{
+	text-align: left;
+	border-bottom: solid 1px black;
+	padding-left: .5em;
+	position: relative;
+}
+.tituloticket h3, .tituloticket img{
+	display: inline-block;
+}
+.tituloticket h3{
+	margin-left: 1em;
+}
+.cuerpoticket{
+	display: block;
+	margin: 1em 1em;
+	text-align: left;
+}
+p.pie{
+	border-top: solid 1px black;
+	font-size: 12px;
+}
+.derecha,.izquierda{
+	display: inline-block;
+	position: relative;
+}
+
+canvas#codigo{
+	/*TICKET*/
+	float: right;
+	margin-top: -6.5em;
+	padding-left: 1.5em;
+}
 .codigo canvas{
+	/*TARJETA*/
 	display: block;
 	margin: 0 auto;
 	height: 20px;
@@ -251,3 +289,7 @@ footer p{
 	vertical-align: middle;
 	margin: 0;
 }
+
+
+
+

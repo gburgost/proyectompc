@@ -36,7 +36,6 @@ if($_SESSION["autentica"] != "SIP"){
             success: function(resp){
               $('#resultado').html(resp);
               return false;
-
             }
           });
         }

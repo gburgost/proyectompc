@@ -15,6 +15,18 @@ if($_SESSION["autentica"] != "SIP"){
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/jquery-ui.css">
 	<link rel="stylesheet" href="../css/estilo.css">
+	<link href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+	<script src="js/modernizr.js"></script>
+	<script src="js/jquery-ui.custom.js"></script>
+	<script>
+		Modernizr.load({
+        test: Modernizr.inputtypes.date,
+        nope: "js/jquery-ui.custom.js",
+        callback: function() {
+          $("input[type=date]").datepicker();
+        }
+      	});
+	</script>
 </head>
 <body>
 	<div id="mainWrapper">
@@ -74,7 +86,7 @@ if($_SESSION["autentica"] != "SIP"){
 
 								<p>
 									<label for="name">Nombre</label>
-									<input id="name" class="form-control" name="name" type="text" required tabindex="1"/>
+									<input id="name" class="form-control" name="name" type="text"  tabindex="1"/>
 								</p>
 								<p>
 									<label for="rut">Rut</label>
@@ -85,12 +97,33 @@ if($_SESSION["autentica"] != "SIP"){
 									<input id="cargo" class="form-control" name="cargo" type="text" tabindex="5" />
 								</p>
 								<p>
-									<label for="fechavin">Fecha de Vinculación</label>
+									<label for="fechavin">Fecha de Vinculación (AAAA-MM-DD)</label>
 									<input id="fechavin" class="form-control" name="fechavin" type="date" tabindex="7" />
 								</p>
 								<p>
 									<label for="departamento">Departamento</label>
-									<?php include 'departamento.php'; ?>
+									<?php
+					                    $conexion=mysql_connect('localhost', 'root', '')
+					                    or die("Problemas en la conexion");
+					                    mysql_select_db("mpc",$conexion) or
+					                    die("Problemas en la seleccion de la base de datos");
+					                    $ssql="SELECT id_departamento, CONCAT( nombre_departamento) AS FNAME FROM departamento order by FNAME";
+					                    saca_menu_desplegable2($ssql,1,'FNAMES');
+					/*definición de la función*/
+											function saca_menu_desplegable2($ssql,$valor,$nombre){
+										   echo "<select id='id_departamento' name='id_departamento' class='form-control'>";
+										   $resultado=mysql_query($ssql);
+										   while ($fila=mysql_fetch_row($resultado)){
+										     if ($fila[0]==$valor){
+										       echo "<option selected value='$fila[0]'>$fila[1]</option>";
+										     }
+										     else{
+										       echo "<option value='$fila[0]'>$fila[1]</option>";
+										     }
+										  }
+										   echo "</select>";
+										}
+					                    ?>
 								</p>
 
 							</div>
@@ -98,10 +131,10 @@ if($_SESSION["autentica"] != "SIP"){
 
 								<p>
 									<label for="lastname">Apellidos</label>
-									<input id="lastname" class="form-control" name="lastname" type="text" required tabindex="2"/>
+									<input id="lastname" class="form-control" name="lastname" type="text"  tabindex="2"/>
 								</p>
 								<p>
-									<label for="date">Fecha Nacimiento</label>
+									<label for="date">Fecha Nacimiento (AAAA-MM-DD)</label>
 									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
 								</p>
 								<p>
@@ -114,7 +147,7 @@ if($_SESSION["autentica"] != "SIP"){
 								</p>
 
 								<p>
-									<label for="fechades">Fecha de Desvinculación</label>
+									<label for="fechades">Fecha de Desvinculación (AAAA-MM-DD)</label>
 									<input id="fechades" class="form-control" name="fechades" type="date" tabindex="8" />
 								</p>
 								<p>

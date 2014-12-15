@@ -27,7 +27,7 @@
 	echo "<p><strong>".$nombre." ".$apellido."</strong></p>";
 	echo "<p>".$tipo."</p>";
 	echo "<p>".$rut."</p>";
-	echo"<canvas id='codigo' width='280' height='49'></canvas>";
+	echo"<canvas class='codigo' width='280' height='49'></canvas>";
 	echo "</div>";
 	echo "<p class='pie'>Metalúrgica Puerto Caldera</p>";
 	echo "</div>";
@@ -40,7 +40,7 @@
 	<script>
 	$(document).ready(function(){
 		    	serial = "<?php echo $_GET['rut_persona']; ?>";
-	        $('#codigo').barcode(serial, "codabar", {barWidth:2, barHeight:30, output: "canvas"}
+	        $('.codigo').barcode(serial, "codabar", {barWidth:2, barHeight:30, output: "canvas"}
 				);
 		    });
 	</script>

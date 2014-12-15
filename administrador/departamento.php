@@ -9,8 +9,7 @@
                     saca_menu_desplegable2($ssql,1,'FNAMES');
 /*definición de la función*/
 						function saca_menu_desplegable2($ssql,$valor,$nombre){
-					   echo "<select id='id_departamento' name='id_departamento' class='form-control' tabindex='9'>";
-					   echo "<option value=''>Seleccione Departamento</option> ";
+					   echo "<select id='departamento' name='departamento' class='form-control' tabindex='9'>";
 					   $resultado=mysql_query($ssql);
 					   while ($fila=mysql_fetch_row($resultado)){
 					     if ($fila[0]==$valor){

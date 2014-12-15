@@ -14,12 +14,15 @@ if($_SESSION["autentica"] != "SIP"){
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/jquery-ui.css">
+	<link href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/estilo.css">
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/functions.js"></script>
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-ui.js"></script>
 	<script src="../scripts/bootstrap.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script src="js/jquery-ui.custom.js"></script>
 	<script>
 		$('.dropdown-toogle').dropdown();
 
@@ -35,6 +38,13 @@ if($_SESSION["autentica"] != "SIP"){
 		$(document).ready( function () {
 		    $('#tSearch').DataTable();
 		} );
+		Modernizr.load({
+        test: Modernizr.inputtypes.date,
+        nope: "js/jquery-ui.custom.js",
+        callback: function() {
+          $("input[type=date]").datepicker();
+        }
+      	});
 	</script>
 </head>
 <body>
@@ -95,9 +105,9 @@ if($_SESSION["autentica"] != "SIP"){
 						<input id="persona" class="auto form-control" type="text" required/>
 					</div>
 					<div class="col-md-6">
-						<label for="desde">Desde: </label>
+						<label for="desde">Desde (AAAA-MM-DD): </label>
 						<input type="date" id="desde" name="desde" class="form-control"/><br/>
-						<label for="hasta">Hasta: </label>
+						<label for="hasta">Hasta (AAAA-MM-DD): </label>
 						<input type="date" id="hasta" name="hasta" class="form-control"/><br/>
 						<button class="btn btn-success"  onclick="consultar(document.getElementById('persona').value,document.getElementById('desde').value, document.getElementById('hasta').value);">Consultar</button>
 						<button class="btn btn-danger" type="reset">Limpiar</button>

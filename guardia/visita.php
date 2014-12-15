@@ -14,6 +14,7 @@ if($_SESSION["autentica"] != "SIP"){
 	<link rel="stylesheet" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/jquery-ui.css">
+	<link href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/estilo.css">
 
 	<script src="../scripts/jquery.min.js"></script>
@@ -23,10 +24,13 @@ if($_SESSION["autentica"] != "SIP"){
 	<script src="../scripts/jquery-barcode.js"></script>
 	<script src="../scripts/reloj.js"></script>
 	<script src="../scripts/jquery-ui.js"></script>
+	<script src="../scripts/modernizr.js"></script>
 	<script src="../scripts/bootstrap.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script src="js/jquery-ui.custom.js"></script>
 
 	<script>
-		function registrar(name,rut,empresa,lastname,date,visitado)
+		function registrar(name,rut,lastname,date)
         {
         var parametros = {
 		    "name" : name,
@@ -53,6 +57,16 @@ if($_SESSION["autentica"] != "SIP"){
 			});
 
 		});
+
+		Modernizr.load({
+        test: Modernizr.inputtypes.date,
+        nope: "js/jquery-ui.custom.js",
+        callback: function() {
+          $("input[type=date]").datepicker();
+        }
+      	});
+
+
 	</script>
 </head>
 <body onload="Comenzar()">
@@ -108,8 +122,6 @@ if($_SESSION["autentica"] != "SIP"){
 			<article id="aRegister">
 				<div class="container-fluid">
 
-				<div id="resultado"></div>
-
 					<form method="POST" action="return false" onsubmit="return false">
 						<div class="row">
 							<div class="col-md-6">
@@ -128,19 +140,21 @@ if($_SESSION["autentica"] != "SIP"){
 									<input id="lastname" class="form-control" name="lastname" type="text" required tabindex="2"/>
 								</p>
 								<p>
-									<label for="date">Fecha Nacimiento</label>
+									<label for="date">Fecha Nacimiento (AAAA-MM-DD)</label>
 									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
 								</p>
 							</div>
 							<p>
 						</div>
 						<hr>
+						<div id="resultado"></div>
 						<div id="botones">
 							<button type="reset" class="btn btn-danger" >Limpiar</button>
 							<button id="doRegister" class="btn btn-success"onclick = "registrar(document.getElementById('name').value, document.getElementById('rut').value, document.getElementById('lastname').value,document.getElementById('date').value);" >Registrar</button>
 
 						</div>
 					</form>
+
 				</div>
 			</article>
 		</section>
