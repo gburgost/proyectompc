@@ -101,7 +101,7 @@
                               echo "<td align='center'>".$fila['hora_entrada']."</td>";
                               echo "<td align='center'>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
-                              if ($fila['hora_salida'] > '18:00:00') {
+                              if ($fila['hora_salida'] > '19:00:00') {
                                    $ex = $fila['hora_salida'] - '18:00:00';
                                    echo "<td align='center' BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
                                    echo "<td align='center'>".$fila['rut_guardia1']."</td>";
@@ -129,7 +129,7 @@
                               echo "<td align='center'>".$fila['hora_entrada']."</td>";
                               echo "<td align='center'>".$fila['nombre_guardia'].' '.$fila['apellido_guardia']."</td>";
                               echo "<td>".$fecha_salida."</td>";
-                              if ($fila['hora_salida'] > '18:00:00') {
+                              if ($fila['hora_salida'] > '19:00:00') {
                                    $ex = $fila['hora_salida'] - '18:00:00';
                                    echo "<td align='center' BGCOLOR='#C55E5B'>".$fila['hora_salida']."</td>";
                                    echo "<td align='center'>".$fila['rut_guardia1']."</td>";

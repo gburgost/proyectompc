@@ -38,7 +38,7 @@
     	echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <strong>Persona con Prohibición de Acceso.</strong><p><br/>
 			<strong>'.$nombre.' '.$apellido.'</strong><br/>
     		Motivo: '.$motivo.'</p></div>';
-    	echo "<script>setTimeout('document.location.reload()',5000);</script>";
+    	echo "<script>setTimeout('document.location.reload()',8000);</script>";
 
     }
 
@@ -57,7 +57,7 @@
 		         //Si el estado esta en "abierto" se genera una alerta
 		          if ($nmyclave != 0){
 		          	echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> No se ha realizado una salida.</div>';
-		          	echo "<script>setTimeout('document.location.reload()',5000);</script>";
+		          	echo "<script>setTimeout('document.location.reload()',8000);</script>";
 		          }
 		          //Si el estado es "cerrado" se insertan los datos en la tabla.
 		          else
@@ -73,7 +73,7 @@
           	 		mysqli_query($conexion, "INSERT INTO registro_persona (cod_registro, nro_garita, rut_persona, rut_guardia, fecha_entrada, hora_entrada, fecha_salida, hora_salida, estado) VALUES('', '$nro_garita', '$rut_persona', '$guardia', '$fecha', '$hora', '', '', '$estado' )");
             	echo '<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Registro de <strong>entrada</strong> exitoso. <br/><br/>Nombre: '.$nombre.' '.$apellido.' <br/> Hora entrada: '.$hora.'</br>Fecha entrada: '.$fecha.'<br/>
             	<div class="imguser"><img src="../administrador/'.$foto.'" widht="100" height = "100"/><p>'.$tipopersona.'</p></div></div>';
-            	echo "<script>setTimeout('document.location.reload()',5000);</script>";
+            	echo "<script>setTimeout('document.location.reload()',8000);</script>";
 		          }
           }
           else{
@@ -87,7 +87,7 @@
           	 mysqli_query($conexion, "INSERT INTO registro_persona (cod_registro, nro_garita, rut_persona, rut_guardia, fecha_entrada, hora_entrada, fecha_salida, hora_salida, estado) VALUES('', '$nro_garita', '$rut_persona', '$guardia', '$fecha', '$hora', '', '', '$estado' )");
             	echo '<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Registro de <strong>entrada</strong> exitoso. <br/><br/>Nombre: '.$nombre.' '.$apellido.' <br/> Hora entrada: '.$hora.'</br>Fecha entrada: '.$fecha.'<br/>
             	<div class="imguser"><img src="../administrador/'.$foto.'" widht="100" height = "100"/><p>'.$tipopersona.'</p></div></div>';
-              echo "<script>setTimeout('document.location.reload()',5000);</script>";
+              echo "<script>setTimeout('document.location.reload()',8000);</script>";
           }
      }else{
           echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> El rut ingresado no esta registrado en la empresa.</div>';

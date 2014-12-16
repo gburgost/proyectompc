@@ -38,7 +38,7 @@
 
           	echo '<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Registro de <strong>salida</strong> exitoso.<br/><br/>Nombre: '.$fila['nombre'].' '.$fila['apellido'].' <br/> Hora salida: '.$hora.'</br>Fecha salida: '.$fecha.'<br/>
             	<div class="imguser"><img src="../administrador/'.$fila['foto'].'" widht="100" height = "100"/><p>'.$fila['tipo_persona'].'</p></div></div>';
-            echo "<script>setTimeout('document.location.reload()',5000);</script>";
+            echo "<script>setTimeout('document.location.reload()',8000);</script>";
 
           }
           else{

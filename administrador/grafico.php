@@ -66,7 +66,7 @@ if($_SESSION["autentica"] != "SIP"){
 						<li><a href="maquina.php"><span class="icon-business-card"></span>Maquinas</a></li>
 				    </ul>
 				  </li>
-				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Empleado</a></li>
+				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar </a></li>
 				<li><a href="hh.php"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Horas Trabajadas</a></li>
 				<li class="active"><a href="#"><span class="icon-stats"></span>Estadísticas</a></li>
 
@@ -100,7 +100,7 @@ if($_SESSION["autentica"] != "SIP"){
   			</script>
 
   <!-- chart container -->
-  <p>Cantidad de veces</p>
+  <p>Cantidad de Registros</p>
   <div id="chartdiv" style="width: 100%; height: 300px;"></div>
   <p align="right">Tiempo</p>
 

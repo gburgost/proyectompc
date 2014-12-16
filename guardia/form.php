@@ -1,7 +1,7 @@
 <form method="POST" action="return false" onsubmit="return false">
 
 	<p>
-		<input id="rut" class="registrar form-control" name="rut" type="text" required />
+		<input id="rut" class="registrar form-control" name="rut" type="text" required autofocus/>
 		<input type="reset" class="borrar btn btn-danger" value="X" />
 		<span id="resultado"></span>
 	</p>

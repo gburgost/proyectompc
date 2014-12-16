@@ -20,6 +20,18 @@ if($_SESSION["autentica"] != "SIP"){
 	<script src="../scripts/jquery.dataTables.js"></script>
 	<script src="../scripts/jquery-barcode.js"></script>
 	<script src="../scripts/bootstrap.js"></script>
+	<link href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+	<script src="js/modernizr.js"></script>
+	<script src="js/jquery-ui.custom.js"></script>
+	<script>
+		Modernizr.load({
+        test: Modernizr.inputtypes.date,
+        nope: "js/jquery-ui.custom.js",
+        callback: function() {
+          $("input[type=date]").datepicker();
+        }
+      	});
+	</script>
 
 	<script>
 		$('.dropdown-toogle').dropdown();
@@ -87,7 +99,7 @@ if($_SESSION["autentica"] != "SIP"){
 						<li><a href="maquina.php"><span class="icon-business-card"></span>Maquinas</a></li>
 				    </ul>
 				  </li>
-				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar Persona</a></li>
+				<li><a href="buscar.php"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar </a></li>
 				<li><a href="hh.php"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Horas Trabajadas</a></li>
 				<li><a href="grafico.php"><span class="icon-stats"></span>Estadísticas</a></li>
 
@@ -114,7 +126,7 @@ if($_SESSION["autentica"] != "SIP"){
 									<input id="empresa" class="form-control" name="empresa" type="text" tabindex="5"/>
 								</p>
 								<p>
-									<label for="dateinic">Fecha de inicio contrato</label>
+									<label for="dateinic">Fecha de inicio contrato (AAAA-MM-DD)</label>
 									<input id="dateinic" class="form-control" name="dateinic" type="date" tabindex="7"/>
 								</p>
 								<p>
@@ -129,7 +141,7 @@ if($_SESSION["autentica"] != "SIP"){
 									<input id="lastname" class="form-control" name="lastname" type="text" tabindex="2"/>
 								</p>
 								<p>
-									<label for="date">Fecha Nacimiento</label>
+									<label for="date">Fecha Nacimiento (AAAA-MM-DD)</label>
 									<input id="date" class="form-control" name="date" type="date" tabindex="4"/>
 								</p>
 								<p>
@@ -137,7 +149,7 @@ if($_SESSION["autentica"] != "SIP"){
 									<input id="contrato" class="form-control" name="contrato" type="number" tabindex="6"/>
 								</p>
 								<p>
-									<label for="datefin">Fecha de fin contrato</label>
+									<label for="datefin">Fecha de fin contrato (AAAA-MM-DD)</label>
 									<input id="datefin" class="form-control" name="datefin" type="date" tabindex="8"/>
 								</p>
 								<p>
