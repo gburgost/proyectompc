@@ -14,9 +14,6 @@
 	$consulta = mysql_query($persona);
 	$fila = mysql_fetch_array($consulta);
 
-
-
-
 /*	if  ($fila['fecha_salida'] == "" && $fila['rut_persona'] == "" ):
 		mysql_query("INSERT INTO registro_persona (cod_registro, nro_garita, rut_persona, rut_guardia, fecha_entrada, hora_entrada, fecha_salida, hora_salida) VALUES('', '$nro_garita', '$rut_persona', '$rut_guardia', '$fecha', '$hora', '', '' )");
 
